@@ -1,0 +1,4 @@
+# Configuration file for the Environment Variables for the PSP
+
+# Environment variable assigned by default (0=dev, 1=stg, 2=prod)
+environment=2

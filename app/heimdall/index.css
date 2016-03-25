@@ -1,0 +1,107 @@
+h1 {
+	text-align: center;
+}
+
+#searchBar {
+	text-align:	center;
+}
+
+#textFilter {
+	text-align: center;
+}
+
+#applications {
+	margin-top: 20px;
+}
+
+.applicationSummary h3 {
+	display: table-cell;
+	line-height: normal;
+	vertical-align: middle;
+	padding-left: 10px;
+}
+
+.applicationDetails {
+	display: none;
+	text-align: center;
+}
+
+.applicationDetails input {
+	width: 100px;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.applicationInformation { 
+	margin-bottom: 10px;
+	border: solid 1px;
+	border-radius: 5px;
+}
+
+.applicationSummary {
+	line-height: 40px;
+
+}
+
+.applicationDetailsGlobalIndicator {
+	width: 100%;
+	height: 5px;
+}
+
+.appGlobalIndicator {
+	display: table-cell;
+	height: 40px;
+	width: 5px;
+	background-color: red;
+}
+
+.environmentDetails {
+	margin-bottom: 20px;
+}
+
+/*Has to be #content .ui-icon or it gets overwritten by the jquery-ui include in the footer*/
+#content .ui-icon{
+	display: inline-block;
+	vertical-align: text-bottom;
+}
+.appUsers {
+	display: inline-block;
+	float: left;
+	width: 50%;
+}
+
+.appAreas {
+	display: inline-block;
+	float: right;
+	width: 50%;
+}
+
+.addApplication {
+	float: right;
+}
+
+#addApplicationForm {
+	text-align: center;
+	display: none;
+}
+
+#addApplicationForm input {
+	width: 250px;
+	margin-bottom: 10px;
+}
+
+#addApplicationForm label {
+	display: block;
+}
+
+#deleteApplicationConfirm {
+	display: none;
+}
+
+#deleteApplicationConfirm .ui-icon {
+	display: inline-block;
+	vertical-align: text-bottom;
+	margin-right: 10px;
+}

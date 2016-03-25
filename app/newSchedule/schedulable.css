@@ -1,0 +1,26 @@
+#page-title, #page-description {
+	text-align : center;
+	margin-left: auto;
+	margin-right: auto;
+	height: auto;
+	width: 600px;
+}
+
+.emp-row {
+	margin-left: auto;
+	margin-right: auto;
+	width : 160px;
+	height : 30px;
+	display: block;
+}
+
+.emp-label {
+	text-align: left;
+	padding-left: 10px; 
+}
+
+input[type='checkbox'] {
+	float:left;
+}
+
+

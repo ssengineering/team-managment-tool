@@ -1,0 +1,6 @@
+CSS Colors:
+BYU Bar = 023962
+Gold = f8ad50
+Grey = 636769
+infoPage.css wrapper background = 536d81
+red = 8f100a

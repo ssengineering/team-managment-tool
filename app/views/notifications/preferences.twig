@@ -1,0 +1,58 @@
+[% extends "templates/main.twig" %]
+
+[% block headerScripts %]
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap/namespaced-bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap/namespaced-bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/notifications/preferences.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="/static/tmt_page.js"></script>
+<script src="/static/js/notifications/preferences.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
+<script>
+	var netId = '[[ templateData.netId ]]';
+	var areaGuid = '[[ templateData.areaGuid ]]';
+	var isAdmin = [% if isAdmin %]true[% else %]false[% endif %];
+	var isSU = [% if templateData.isSU %]true[% else %]false[% endif %];
+</script>
+[% endblock %]
+
+[% block content %]
+<div ng-app="tmt_page" ng-controller="notificationspreferencesCtrl" class="bootstrap">
+	<div class="page-header">
+		<h1 class="text-center">My Notification Preferences
+			<small>
+				<a style="font-size:0.8em" ng-show="help" ng-click="help = !help">Help<span style="font-size:0.6em" class="glyphicon glyphicon-menu-down"></span></a>
+				<a style="font-size:0.8em" ng-hide="help" ng-click="help = !help">Help<span style="font-size:0.6em" class="glyphicon glyphicon-menu-right"></span></a>
+			</small>
+		</h1>
+		<div class="row" ng-show="help">
+			<p class="col-sm-10 col-sm-offset-1 text-center">
+				This page allows you to choose which notifications you would like to receive. All the notification types you may receive are shown below. Each type has a dropdown menu with a few options for how you would like to receive that type of notification. Simply select the option that you would prefer for each type.
+			</p>
+				<ul class="col-sm-8 col-sm-offset-4">
+					<li><b>None:</b> You will not receive any notifications of this type</li>
+					<li><b>Email:</b> You will receive this notification as an email</li>
+					<li><b>Onsite:</b> You will receive a pop-up notification message on the TMT website</li>
+					<li><b>All:</b> You will receive an email and a pop-up notification on the TMT website</li>
+				</ul>
+		</div>
+	</div>
+	<p>Note: You may receive some mandatory notifications regardless of preference.</p>
+	<div class="col-sm-4" ng-repeat="type in types | orderBy : 'name'">
+		<div class="panel panel-default">
+			<div class="panel-body" style="word-wrap:break-word" ng-class="{none: type.method == 'none'}">
+				{{ type.name }}
+				<div class="btn-group pull-right">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{{ type.method }}
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li ng-repeat="method in methods"><a href="#" ng-click="setMethod(type.guid, method)">{{ method }}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+[% endblock %]

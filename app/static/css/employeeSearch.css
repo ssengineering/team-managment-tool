@@ -1,0 +1,39 @@
+.employee-search-input {
+	width : 100%;
+}
+.suggestion-list {
+	position: absolute;
+	z-index : 100;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    font-size: 14px;
+}
+.suggestion-list li {
+    color: #333333;
+    font-weight: 600;
+    padding: 4px 25px;
+    font-size: 1em;
+    cursor: pointer;
+    background: #f2f2f2;
+    border-bottom: 1px solid #dddddd;
+}
+.suggestion-list li:hover {
+    background: #dddddd;
+}
+.suggestion-list li:active,
+.suggestion-list li.active {
+    color: #628cb6;
+    background: #dddddd;
+}
+.suggestion-list:focus{
+    outline:none;
+}
+

@@ -1,0 +1,50 @@
+.button {
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #aeb5c2), color-stop(1, #023962) );
+    background:-moz-linear-gradient( center top, #90a5b2 5%, #023962 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#aeb5c2', endColorstr='#023962');
+    background-color:#aeb5c2;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px solid #023862;
+    display:inline-block;
+    color:#fff;
+    font-family:Times New Roman;
+    font-size:15px;
+    font-weight:bold;
+    padding:1px 4px;
+    text-decoration:none;
+}.button:hover {
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #023962), color-stop(1, #023962) );
+    background:-moz-linear-gradient( center top, #023962 5%, #023962 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#023862', endColorstr='#023962');
+    background-color:#023862;
+}.button:active {
+    position:relative;
+    top:1px;
+}
+
+table.imagetable {
+	font-family: verdana,arial,sans-serif;
+	font-size:15px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #636769;
+	border-collapse: collapse;
+}
+table.imagetable th {
+	color:white;
+	background:#023962;
+	border-width: 1px;
+	padding: 5px;
+	border-style: solid;
+	border-color: #999999;
+}
+table.imagetable td {
+	color:#fff;	
+	background:#536d81;
+	border-width: 1px;
+	padding: 5px;
+	border-style: solid;
+	border-color: #999999;
+}

@@ -1,0 +1,174 @@
+[% extends "templates/main.twig" %]
+[% block headerScripts %]
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="/static/tmt_page.js"></script>
+<script src="/static/js/employeeList/table.js"></script>
+<link rel="stylesheet" href="/static/css/employeeList/table.css">
+[% endblock %]
+[% block content %]
+<div ng-app="tmt_page" ng-controller="tableCtrl">
+<script>
+	var area = [[templateData.area]];
+	var customDataFields = [ [% for field in customDataFields %]'[[field]]'[% if not loop.last %],[% endif %] [% endfor %] ];
+</script>
+<h1 style="text-align:center">Employee List Table</h1>
+[% if terminatedPermission %]
+<div id="statusDiv">
+	<label for="activeBox">Active</label>
+	<input id="activeBox" type="checkbox" ng-model="active" class="check">
+	<label for="inactiveBox">Inactive</label>
+	<input id="inactiveBox" type="checkbox" ng-model="inactive" class="check">
+	<label for="terminatedBox">Terminated</label>
+	<input id="terminatedBox" type="checkbox" ng-model="terminated" class="check">
+	<input id="tableSearchBox" type="text" ng-model="search" placeholder="Search...">
+</div>
+[% else %]
+<div id="statusDiv">
+	<input id="tableSearchBox" type="text" ng-model="search" placeholder="Search...">
+</div>
+[% endif %]
+<div id="columnDiv" style="width:100%;display:table-row">
+	<label for="photoCheckbox">Photo</label>
+	<input type="checkbox" ng-model="columns.photo" class="check" id="photoCheckbox">
+	<label for="netIdCheckbox">Net Id</label>
+	<input type="checkbox" ng-model="columns.netId" class="check" id="netIdCheckbox">
+	<label for="firstNameCheckbox">First Name</label>
+	<input type="checkbox" ng-model="columns.firstName" class="check" id="firstNameCheckbox">
+	<label for="lastNameCheckbox">Last Name</label>
+	<input type="checkbox" ng-model="columns.lastName" class="check" id="lastNameCheckbox">
+	<label for="byuIdCheckbox">BYU Id</label>
+	<input type="checkbox" ng-model="columns.byuId" class="check" id="byuIdCheckbox">
+	<label for="phoneCheckbox">Phone</label>
+	<input type="checkbox" ng-model="columns.phone" class="check" id="phoneCheckbox">
+	<label for="emailCheckbox">Email</label>
+	<input type="checkbox" ng-model="columns.email" class="check" id="emailCheckbox">
+	<label for="positionCheckbox">Position</label>
+	<input type="checkbox" ng-model="columns.position" class="check" id="positionCheckbox">
+	<label for="statusCheckbox">Status</label>
+	<input type="checkbox" ng-model="columns.status" class="check" id="statusCheckbox">
+	<label for="managerCheckbox">Manager</label>
+	<input type="checkbox" ng-model="columns.manager" class="check" id="managerCheckbox">
+	<label for="birthCheckbox">Birth Date</label>
+	<input type="checkbox" ng-model="columns.birth" class="check" id="birthCheckbox">
+	<label for="hireCheckbox">Hire</label>
+	<input type="checkbox" ng-model="columns.hire" class="check" id="hireCheckbox">
+	<label for="graduationCheckbox">Graduation</label>
+	<input type="checkbox" ng-model="columns.graduation" class="check" id="graduationCheckbox">
+	[% for field in customDataFields|sort %]
+		<label for="[[field]]Checkbox">[[field]]</label>
+		<input type="checkbox" ng-model="columns['[[field]]']" ng-init="columns['[[field]]']=true" class="check" id="[[field]]Checkbox">
+	[% endfor %]
+</div>
+<div id="advancedSearchLink">
+	<a ng-click="toggleAdvanced()">Advanced Search</a>
+</div>
+<div id="advancedSearchOptions" ng-show="advSearch">
+	<label for="managerSearch">Manager:</label>
+	<input id="managerSearch" type="text" ng-model="managerSearch" placeholder="Manager Name...">
+	<br>
+	<h4>Filter by Positions</h4>
+	<div ng-repeat="position in positions track by $index" id="positionsDiv">
+		<input id="{{position.positionName}}Checkbox" type="checkbox" ng-model="positions[$index].isChecked" class="check">
+		<label for="{{position.positionName}}Checkbox">{{position.positionName}}</label>
+	</div>
+</div>
+<table>
+	<tr>
+		<th ng-show="columns.photo">Photo</th>
+		<th ng-show="columns.netId" ng-click="getSortColumn('netID')">
+			NetId
+			<img ng-show="sortColumn=='netID' && reverse"  src="/static/images/upward-caret.png" style="width:16px">
+			<img ng-show="sortColumn=='netID' && !reverse" src="/static/images/downward-caret.png" style="width:16px">
+		</th>
+		<th ng-show="columns.firstName" ng-click="getSortColumn('firstName')">
+			First Name
+			<img ng-show="sortColumn=='firstName' && reverse"  src="/static/images/upward-caret.png" style="width:16px">
+			<img ng-show="sortColumn=='firstName' && !reverse" src="/static/images/downward-caret.png" style="width:16px">
+		</th>
+		<th ng-show="columns.lastName" ng-click="getSortColumn('lastName')">
+			Last Name
+			<img ng-show="sortColumn=='lastName' && reverse"  src="/static/images/upward-caret.png" style="width:16px">
+			<img ng-show="sortColumn=='lastName' && !reverse" src="/static/images/downward-caret.png" style="width:16px">
+		</th>
+		<th ng-show="columns.byuId" ng-click="getSortColumn('byuIDnumber')">
+			BYU Id
+			<img ng-show="sortColumn=='byuIDnumber' && reverse"  src="/static/images/upward-caret.png" style="width:16px">
+			<img ng-show="sortColumn=='byuIDnumber' && !reverse" src="/static/images/downward-caret.png" style="width:16px">
+		</th>
+		<th ng-show="columns.phone" ng-click="getSortColumn('phone')">
+			Phone
+			<img ng-show="sortColumn=='phone' && reverse"  src="/static/images/upward-caret.png" style="width:16px">
+			<img ng-show="sortColumn=='phone' && !reverse" src="/static/images/downward-caret.png" style="width:16px">
+		</th>
+		<th ng-show="columns.email" ng-click="getSortColumn('email')">
+			Email
+			<img ng-show="sortColumn=='email' && reverse"  src="/static/images/upward-caret.png" style="width:16px">
+			<img ng-show="sortColumn=='email' && !reverse" src="/static/images/downward-caret.png" style="width:16px">
+		</th>
+		<th ng-show="columns.position" ng-click="getSortColumn('position')">
+			Position
+			<img ng-show="sortColumn=='position' && reverse"  src="/static/images/upward-caret.png" style="width:16px">
+			<img ng-show="sortColumn=='position' && !reverse" src="/static/images/downward-caret.png" style="width:16px">
+		</th>
+		<th ng-show="columns.status" ng-click="getSortColumn('active')">
+			Status
+			<img ng-show="sortColumn=='active' && reverse"  src="/static/images/upward-caret.png" style="width:16px">
+			<img ng-show="sortColumn=='active' && !reverse" src="/static/images/downward-caret.png" style="width:16px">
+		</th>
+		<th ng-show="columns.manager" ng-click="getSortColumn('supervisor')">
+			Manager
+			<img ng-show="sortColumn=='supervisor' && reverse"  src="/static/images/upward-caret.png" style="width:16px">
+			<img ng-show="sortColumn=='supervisor' && !reverse" src="/static/images/downward-caret.png" style="width:16px">
+		</th>
+		<th ng-show="columns.birth" ng-click="getSortColumn('birthday')">
+			Birth Date
+			<img ng-show="sortColumn=='birthday' && reverse"  src="/static/images/upward-caret.png" style="width:16px">
+			<img ng-show="sortColumn=='birthday' && !reverse" src="/static/images/downward-caret.png" style="width:16px">
+		</th>
+		<th ng-show="columns.hire" ng-click="getSortColumn('hireDate')">
+			Hire Date
+			<img ng-show="sortColumn=='hireDate' && reverse"  src="/static/images/upward-caret.png" style="width:16px">
+			<img ng-show="sortColumn=='hireDate' && !reverse" src="/static/images/downward-caret.png" style="width:16px">
+		</th>
+		<th ng-show="columns.graduation" ng-click="getSortColumn('graduationDate')">
+			Graduation Date
+			<img ng-show="sortColumn=='graduationDate' && reverse"  src="/static/images/upward-caret.png" style="width:16px">
+			<img ng-show="sortColumn=='graduationDate' && !reverse" src="/static/images/downward-caret.png" style="width:16px">
+		</th>
+		[% for field in customDataFields|sort %]
+			<th ng-show="columns['[[field]]']" ng-click="getSortColumn('[[field]]')">
+				[[field]]
+				<img ng-show="sortColumn=='[[field]]' && reverse"  src="/static/images/upward-caret.png" style="width:16px">
+				<img ng-show="sortColumn=='[[field]]' && !reverse" src="/static/images/downward-caret.png" style="width:16px">
+			</td>
+		[% endfor %]
+	</tr>
+	<tr ng-repeat="employee in employees
+	  | orderBy:sort:reverse
+	  | activity:active:inactive:terminated
+	  | employeeFilter:search
+	  | manager:managerSearch
+	  | position:positions
+	">
+		<td class="image" ng-show="columns.photo"><img src="[[piPhotoUrl]]?n={{employee.netID}}"></td>
+		<td ng-show="columns.netId">{{employee.netID}}</td>
+		<td ng-show="columns.firstName">{{employee.firstName}}</td>
+		<td ng-show="columns.lastName">{{employee.lastName}}</td>
+		<td ng-show="columns.byuId">{{employee.byuIDnumber}}</td>
+		<td ng-show="columns.phone">{{employee.phone}}</td>
+		<td ng-show="columns.email">{{employee.email}}</td>
+		<td ng-show="columns.position">{{employee.position | positionName:positions}}</td>
+		<td ng-show="columns.status">{{employee.active | status}}</td>
+		<td ng-show="columns.manager">{{employee.supervisor}}</td>
+		<td ng-show="columns.birth">{{employee.birthday}}</td>
+		<td ng-show="columns.hire">{{employee.hireDate}}</td>
+		<td ng-show="columns.graduation">{{employee.graduationDate}}</td>
+		[% for field in customDataFields|sort %]
+			<td ng-show="columns['[[field]]']">{{employee['[[field]]']}}</td>
+		[% endfor %]
+	</tr>
+</table>
+</div>
+[% endblock %]

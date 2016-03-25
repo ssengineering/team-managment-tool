@@ -1,0 +1,39 @@
+.employee {
+	width: 500px;
+	margin: 10px auto;
+	text-align: center;
+}
+
+.employeeImage {
+	width: 300px;
+}
+
+#header {
+	text-align: center;
+}
+
+.employee {
+	background: #628CB6;
+	border-radius: 10px;
+	border: solid 1px;
+	padding: 15px;
+}
+
+.employeeName {
+	font-weight: bold;
+	font-style: oblique;
+	font-size: 1.5em;
+	color: white;
+}
+
+.date {
+	color: white;
+}
+
+.comments {
+	margin-top: 5px;
+	background: white;
+	border-radius: 10px;
+	padding: 10px;
+	box-shadow: 2px 4px 10px rgba(0,0,0,0.40) inset;
+}

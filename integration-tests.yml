@@ -1,0 +1,56 @@
+tmt:
+  extends:
+    file: common.yml
+    service: tmt
+  environment:
+    ENVIRONMENT: TESTING
+    REDIS_HOST: redis
+    DB_NAME: sites_ops_test
+    DB_HOST: db
+    DB_USER: root
+    DB_PASS: devteam
+    MONGO_HOST: mongodb
+    MONGO_DB_NAME: test
+  links: 
+    - db
+    - redis
+    - mongodb
+  volumes:
+    - app/:/var/www/html
+    - vendor/:/var/www/vendor
+    - dev/certs/insecure.key:/etc/ssl/private/ssl-cert-snakeoil.key
+    - dev/certs/insecure.pem:/etc/ssl/certs/ssl-cert-snakeoil.pem
+  
+db:
+  extends:
+    file: common.yml
+    service: db
+    
+redis:
+  extends:
+    file: common.yml
+    service: redis 
+    
+mongodb:
+  extends:
+    file: common.yml
+    service: mongodb
+    
+tester:
+  build: dev/tester
+  environment:
+    REDIS_HOST: redis
+    DB_NAME: sites_ops_test
+    DB_HOST: db
+    DB_USER: root
+    DB_PASS: devteam
+    MONGO_HOST: mongodb
+    MONGO_DB_NAME: test
+  links:
+    - tmt
+    - db
+    - redis
+    - mongodb
+  command: /bin/bash integration-tests.sh 
+  volumes:
+    - .:/tmp

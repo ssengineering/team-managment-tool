@@ -1,0 +1,63 @@
+[% extends "templates/simple.twig" %]
+[% block headerScripts %]
+	<script src="/static/js/landingPage.js"></script>
+	<link rel="stylesheet" href="/static/css/landingPage.css">
+[% endblock %]
+[% block content %]
+
+<div class="title">
+<H1>OIT Production Services</H1>
+</div>
+
+<br />
+<br />
+<div class="picture">
+	<img src="itb.jpg" alt="Picture" height="300" width="450"> 
+</div>
+<div>
+	<div class="headline2">
+		Mission
+	</div>
+	<div class="subheadline">
+		We enrich the BYU environment by making it inspiring, comfortable, productive and safe. <br /><br />
+	</div>
+	<div class="headline2">
+		Vision
+	</div>
+	<div class="subheadline">
+		To provide legendary service and value. <b style="color:red">Every university associate knows us and trusts us to take care of them</b>. <br /><br />
+	</div>
+	<div class="headline2">
+		Values
+	</div>
+	<div class="subheadline">
+
+		<ul>
+		<li>Competency</li>
+		<li>Respect for Sacred Resources</li>
+		<li>Integrity</li>
+		<li>Teamwork</li>
+		<li>Exceeding Customer Expectations</li>
+		<li>Respect for All Individuals</li>
+		<li>Innovation</li>
+		<li>Accountability</li>
+		</ul>
+
+	</div> 
+</div>
+
+<div class="ldapInstructions">
+If CAS is inaccessible, log in through LDAP <a href="#" onClick="showForm();">HERE!</a>
+</div><br />
+<div id="logInForm" class="ldapLogInForm">
+		<div id="ldapWrongCredentials"> The Net ID or password you entered is incorrect. Please try again.  </div>
+
+		<br />
+		<form method="post" action="/login/ldap">
+			Net ID:<br /> <input type="text" name="netId" /><br />
+			Password: <br /><input type="password" name="password"/><br /><br />
+			<input type="submit" value="Submit"/>
+
+		</form>
+</div>
+[% endblock %]

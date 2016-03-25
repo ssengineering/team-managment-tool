@@ -1,0 +1,14 @@
+[% extends "crudApps/index.twig" %]
+[% block extra_dialogs %]
+<span ng-controller="Override" hidden></span>
+<div id="delete-dialog" title="Confirm Delete" hidden>
+	<p class="text-center">Are you sure you want to delete this field? All employee data attached to this field will be <b>permanently</b> deleted.</p>
+</div>
+<script type="text/javascript">
+var area = [[area]];
+</script>
+[% endblock %]
+[% block extra_scripts %]
+<script src="/static/js/customData/override.js"></script>
+[% endblock %]
+

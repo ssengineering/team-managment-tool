@@ -1,0 +1,35 @@
+<div id="add-dialog" title="New">
+	<form ng-submit="add_row_form.$valid && table.addItem(); add_row_form.$setPristine()" 
+		name="add_row_form" novalidate>
+		<table class="full-width">
+			<thead>
+				<tr>
+					<th ng-repeat="column in table.columns" class="ui-state-default">
+						{{column.title}} 
+					</th>
+				</tr>
+			</thead>
+			<tr	class="ui-widget">
+				<td ng-repeat="(index, column) in table.columns">
+					<input type="{{column.type}}" ng-model="table.new_item[column.key]" 
+					value="{{table.new_item[column.key]}}" id="insert_{{index}}"
+					name="field" step="{{column.step}}" 
+					ng-required="column.required" ng-if="column.type!='employee'"/>
+					<div ng-if="column.type=='employee'" 
+					tmt-employee="search" tmt-name="field" tmt-required="column.required" 
+					tmt-val="table.new_item.employee_object" tmt-netid="table.new_item[column.key]"></div>
+				</td>
+			</tr>
+		</table>
+		<hr>
+		<div class="modal-footer row center text-center">
+			<input id="new-item-submit" type="submit" 
+				ng-disabled="!add_row_form.$valid"
+				class="ui-button ui-widget ui-button-text-only ui-corner-all"
+				ng-class="{'ui-state-default' : add_row_form.$valid, 
+					'ui-state-active' : !add_row_form.$valid}">
+			</input>
+		</div>
+	</form>
+</div>
+

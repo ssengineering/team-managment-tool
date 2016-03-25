@@ -1,0 +1,17 @@
+.notificationsDropdownItem .read-x {
+    float: right;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    padding: 4px;
+    background: #aaa;
+    color: #fff;
+    text-align: center;
+    font: 8px Arial, sans-serif;
+    font-weight: bold;
+}
+
+.notificationsDropdownItem:hover .read-x {
+    background-color: #fff;
+    color: #002059;
+}

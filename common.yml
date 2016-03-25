@@ -1,0 +1,22 @@
+tmt:
+  build: .
+  environment:
+    MONGO_HOST: mongodb
+    DB_USER: dev_connector
+    DB_PASS: dev
+    DB_HOST: db
+    DB_NAME: sites_ops
+    
+db:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: devteam
+    MYSQL_DATABASE: sites_ops
+    MYSQL_USER: dev_connector
+    MYSQL_PASSWORD: dev
+    
+redis:
+  image: redis
+  
+mongodb:
+  image: mongo

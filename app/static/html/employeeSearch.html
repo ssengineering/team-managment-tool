@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="/static/css/employeeSearch.css">
+<input ng-model="value" type="text" autocomplete="off" ng-keydown="checkKeyDown($event)" 
+ng-change="updateSuggestions()" class="employee-search-input {{tmtClass}}"
+tmt-employee-validate tmt-list="service.list" ng-required="tmtRequired" name="{{tmtName}}"
+ng-blur="tmtBlur(tmtBlurParams, value); kickout(value)" ng-options="{updateOn : 'blur'}"
+/>
+<ul id="suggestion-list" class="suggestion-list ui-widget" >
+	<li ng-repeat="suggestion in suggestions"
+		ng-click="$parent.value = suggestion.fullName"
+		ng-mouseover="$parent.tempIndex = $index"
+		ng-show="$parent.value != suggestion.fullName"
+		ng-class="{active : $parent.tempIndex == $index}">{{suggestion.fullName}}
+		<span class="subtext"></span></li>
+</ul>

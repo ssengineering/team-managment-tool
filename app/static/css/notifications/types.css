@@ -1,0 +1,16 @@
+.bootstrap h2 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.bootstrap .typeInput {
+	font-weight: bold;
+}
+
+.bootstrap .typeHeader {
+	margin: 0px;
+}
+
+#headerDiv {
+	margin-bottom: 30px;
+}

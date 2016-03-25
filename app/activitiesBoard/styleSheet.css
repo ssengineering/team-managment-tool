@@ -1,0 +1,87 @@
+.sidePanel
+{
+max-width:308px;
+float:left;
+padding-right:20px;
+box-shadow: 7px 0px 7px -3px #CCC; 
+}
+#datepicker
+{
+float:left;
+margin-bottom:20px;
+}
+#calendarInfo
+{
+float:right;
+width:600px;
+}
+.calendarDay
+{
+font:bold 24px "Palatino Linotype", Times, "Times New Roman", serif, "Palatino";
+display:block;
+}
+.calendarEvent
+{
+font:bold 16px "Palatino Linotype", Times, "Times New Roman", serif, "Palatino";
+}
+
+td.highlight a
+{
+background: #A8C7E3 50% 50% repeat-x !important;  
+border: 1px #A8C7E3 solid !important;
+color:#070B73 !important;
+}
+.centered
+{
+text-align:center;
+}
+.bold
+{
+font-weight:bold;
+}
+.selectable:hover, .selectable a:hover
+{
+cursor:pointer !important;
+}
+a:hover
+{
+cursor:default;
+}
+.selected
+{
+color:#444 !important;
+text-decoration:none !important;
+}
+#categories
+{
+float:left;
+clear:left;
+}
+ul, li
+{
+list-style:none !important;
+}
+.invisible
+{
+display:none;
+}
+.visible
+{
+display:block;
+}
+.ui-menu
+{
+width: 300px; 
+}
+#displayEventChanges
+{
+margin-left:auto;
+margin-right:auto;
+height:auto !important;
+width:auto !important;
+min-width:600px;
+}
+.ui-datepicker-trigger
+{
+cursor:pointer;
+}

@@ -1,0 +1,40 @@
+#messageStyle
+{
+	width: 100%;
+    position:relative;
+    float: left;
+}
+#submitInfo
+{
+	float: left;
+	position:relative;
+	padding-right:12px;	
+}
+#submitButton
+{
+	float: right;
+	position:relative;
+	padding-right:12px;	
+}
+
+#editButton
+{
+	float: right;
+	position:relative;
+	padding-right:12px;	
+}
+#textAreaStyle
+{
+	padding-left:12px;	
+}
+#acdEditForm
+{
+	display:none;
+}
+
+#selectContentPoint
+{
+	float: left;
+	position:relative;
+	padding-right:12px;
+}

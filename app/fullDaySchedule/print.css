@@ -1,0 +1,12 @@
+body {
+ font-size:12pt;
+}
+header nav, footer {
+display: none;
+}
+title {
+text-align: center;
+}
+@page {
+margin: 0.5cm;
+}

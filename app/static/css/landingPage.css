@@ -1,0 +1,64 @@
+div.picture 
+{
+	  width:450px;
+	  height:300px;
+	  margin-left: auto;
+	  margin-right: auto;
+	  float:right;
+	  border: solid 2px #CCC;
+	  -moz-box-shadow: 1px 1px 5px #999;
+	  -webkit-box-shadow: 1px 1px 5px #999;
+      box-shadow: 1px 1px 5px #999;
+	  	
+}
+div.title
+{
+	 margin-left: 18px;
+	 text-align:center;
+}
+
+div.subheadline
+{
+    margin-top: 10px;
+	margin-left:50px;
+	width:415px;
+	
+}
+div.headline2
+{
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+	font-family:  'Hoefler Text', Georgia, 'Times New Roman', serif;
+	font-weight: normal;
+    font-size: 1.75em;
+	letter-spacing: .2em;
+	line-height: 1.1em;
+	margin:0px;
+	text-align: center;
+	text-transform: uppercase;
+	width:465px;
+}
+div.ldapLogInForm
+{
+	float:right;
+	display:none;
+	width:225px;
+	font-weight:bold;
+	padding:15px;
+	border: solid 2px #CCC;
+	-moz-box-shadow: 1px 1px 5px #999;
+	-webkit-box-shadow: 1px 1px 5px #999;
+	box-shadow: 1px 1px 5px #999;
+}
+div.ldapInstructions
+{
+	float:right;
+	margin-top:-20px;
+	width:450px;
+}
+#ldapWrongCredentials
+{
+	display:none;
+	font-weight:normal;
+	color: red; 
+	
+}

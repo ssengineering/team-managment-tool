@@ -1,0 +1,27 @@
+FROM php:5.6-apache
+
+RUN apt-get update && apt-get install -y libmcrypt-dev \
+	libxml2-dev libssl-dev ssmtp libldap2-dev
+RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/
+RUN docker-php-ext-install mysql pdo pdo_mysql mcrypt xml soap ldap
+RUN pecl install mongo
+RUN apt-get clean
+
+RUN a2enmod ssl
+RUN a2enmod rewrite
+
+COPY dev/conf/installphpredis.sh /tmp/installphpredis.sh
+RUN chmod +x /tmp/installphpredis.sh
+RUN /tmp/installphpredis.sh
+
+RUN sed -i '/^mailhub=.*/ c\mailhub=${EMAIL_GATEWAY_URL}' /etc/ssmtp/ssmtp.conf
+RUN sed -i '/^hostname=.*/ c\hostname=${PROD_URL}' /etc/ssmtp/ssmtp.conf
+RUN echo 'FromLineOverride=YES' >> /etc/ssmtp/ssmtp.conf
+
+COPY dev/conf/prod-apache.conf /etc/apache2/sites-enabled/apache.conf
+COPY dev/conf/prod-php.ini /usr/local/etc/php/php.ini
+
+COPY app/ /var/www/html/
+COPY vendor/ /var/www/vendor/
+
+EXPOSE 443

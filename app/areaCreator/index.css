@@ -1,0 +1,72 @@
+#editorTitle
+{
+	margin: .25em auto .25em auto;
+	text-align: center;
+}
+#instructionsTitle
+{
+	font-weight: bold;
+	font-size: 1.5em;
+}
+#instructions
+{
+	margin: auto;
+	text-align: center;
+	width: 75%;
+}
+#appTable
+{
+	table-layout: fixed;
+}
+#permissionTable,#appTable,#areaTable,#areaApps
+{
+	width: 100%;
+	max-width: 100%;
+	word-wrap: break-word;
+}
+.popup
+{
+	display: none;
+}
+.popup>.popupTitle
+{
+	margin: .25em auto .25em auto;
+	text-align: center;
+}
+.popup>.form
+{
+	margin: .25em auto .25em auto;
+	float: right;
+}
+.even.selected td
+{
+	background-color: #B0BED9 !important;
+}
+
+.odd.selected td
+{
+	background-color: #9FAFD1 !important;
+}
+.delete
+{
+	margin: auto;
+}
+.internalTd,.deleteTd
+{
+	margin: auto;
+	text-align: center;
+	vertical-align: middle;
+}
+.clearMe
+{
+	clear: both;
+	width: 0px;
+	height: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+label
+{
+	font-weight: bold;
+	float: left !important;
+}

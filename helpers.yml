@@ -1,0 +1,17 @@
+db:
+  extends:
+    file: common.yml
+    service: db
+
+dbimport:
+  build: dev/mysql_importer/
+  links:
+    - db
+  env_file: ./env/dbimport
+
+composer:
+  image: composer/composer
+  entrypoint: ["/bin/sh", "-c"]
+  command: ["composer --ansi update && chmod 777 /app/vendor -R"]
+  volumes:
+    - .:/app

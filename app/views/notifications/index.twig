@@ -1,0 +1,52 @@
+[% extends "templates/main.twig" %]
+
+[% block headerScripts %]
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap/namespaced-bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap/namespaced-bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/notifications/index.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="/static/tmt_page.js"></script>
+<script src="/static/js/notifications/index.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
+<script>
+var netId="[[templateData.netId]]";
+</script>
+[% endblock %]
+
+[% block content %]
+<div ng-app="tmt_page" ng-controller="notificationCtrl" class="bootstrap">
+<h1>My Notifications</h1> 
+<h3 ng-hide="unread.length == 0 && read.length == 0">Unread</h3>
+<div class="panel panel-default" ng-repeat="notification in unread | orderBy:'-timestamp'">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{notification.typeName}}
+	<b class="pull-right">{{notification.timestamp}}</b></h3>
+  </div>
+  <div class="panel-body" id=unread>
+   {{notification.message}}
+<button type="button" class="btn btn-success pull-right" ng-click="markRead(notification.guid)">Mark as Read</button>
+  </div>
+</div>
+
+<hr class="style">
+<h3 ng-hide="unread.length == 0 && read.length == 0">Read</h3>
+<div class="panel panel-default" ng-repeat="notification in read | orderBy: '-timestamp'">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{notification.typeName}}
+	<b class="pull-right">{{notification.timestamp}}</b></h3>
+  </div>
+  <div class="panel-body" id=read>
+   {{notification.message}}
+<button type="button" class="btn btn-danger pull-right" id="delete" ng-click="delete(notification.guid)">Delete</button>
+  </div>
+</div>
+
+<!-- A div that only shows up if the read and unread arrays are both empty, that is, if there are no notifications
+to display --!>
+<div ng-show="unread.length == 0 && read.length == 0">There are no notifications to display</div>
+
+
+
+
+</div>
+[% endblock %]

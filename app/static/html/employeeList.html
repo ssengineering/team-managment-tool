@@ -1,0 +1,19 @@
+<!-- This is the html for the employee list module -->
+<link rel="stylesheet" href="/static/css/employeeList.css">
+<div style="margin-bottom:4px">
+	<div ng-show="list.showActivity" style="margin-bottom:4px">
+		<select ng-model="list.activity" id="activitySelect">
+			<option value=1>Active</option>
+			<option value=0>Inactive</option>
+			<option value=-1>Terminated</option>
+		</select>
+	</div>
+	<div>
+		<input id="searchBox" placeholder="Search..." ng-model="list.search">
+		<ul style="white-space:nowrap">
+			<li ng-repeat="employee in list.employees | activityFilter:list.activity | employeeFilter:list.search | orderBy: 'firstName'" ng-click="employeeListSelect(employee)" class="employeeLink">
+				<a href="#">{{employee.firstName}} {{employee.lastName}}</a>
+			</li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,205 @@
+/*
+*	Name: weeklyReport.css
+*	Application: Weekly Report
+*
+*	Description: This is the main CSS file for the Weekly Report
+*	app. All of the styling of the app is contained in this
+*	file, except for the styling that is controlled by the
+*	jQuery library, the main CSS file for OPS website, and
+*	a few instances of in-line styling.
+*/
+
+h1
+{
+    text-align:center;
+}
+
+h2
+{
+
+	background: /*url("images/ui-bg-glass-45-0a376a_1x400.png")*/ repeat-x scroll 50% 50% #0A376A;
+	border: 1px solid #FFFFFF;
+	border-radius: 5px 5px 5px;
+	color: #FFFFFF;
+	cursor: pointer;
+	display: block;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 1.5em;
+	font-weight: normal;
+	letter-spacing: normal;
+	line-height: 1.4;
+	overflow: visible;
+	padding: 5px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	text-indent: 0;
+	text-shadow: none;
+	text-transform: none;
+	vertical-align: baseline;
+	word-spacing: normal;
+	width: 880px;
+	margin: 18px 10px 18px 0px;
+	
+}
+
+#preview h2
+{
+	width: 737px;
+}
+
+body
+{
+	min-width: 929px;
+	overflow-x: hidden;
+}
+
+#main-header
+{
+	min-width:929px;
+}
+
+#header-top
+{
+	width: 929px;
+}
+
+#logo
+{
+	left: 10px;
+}
+
+#site-name
+{
+	left: 23px;
+}
+
+#search-container
+{
+	right: 10px;
+}
+
+#secondary-nav
+{
+	right: 10px;
+}
+
+#primary-nav ul
+{
+	padding: 0px 0px 0px 0px;
+}
+
+#content
+{
+	width: 910px;
+	padding: 0px 0px 0px 0px;
+}
+
+#footer-bottom
+{
+	padding: 35px 16px 16px 16px;
+}
+
+#emailText
+{
+    height: 600px;
+    overflow: scroll;
+    display: none;
+}
+
+.report
+{
+	width: 69em;
+	padding-left: 7px;
+}
+
+.clearme
+{
+    clear: both;
+    height: 0px;
+    width: 0px;
+}
+
+.reportTable
+{
+    width: 68em;
+}
+
+.reportTable td
+{
+    padding: 10px;
+    width: 500px;
+}
+
+.reportTable th
+{
+    padding: 5px;
+}
+
+.reportContent
+{
+    float:left;
+    width:95%;
+    margin:auto 0px;
+}
+
+.reportCheckbox
+{
+    float:left;
+    width:5%;
+    margin:auto 0px;
+}
+
+.name
+{
+   font-size:1.2em;
+   font-weight: bold;
+}
+
+.textareaComment
+{
+	width: 56em;
+}
+
+.filterDiv
+{
+	display: none;
+}
+
+#filterTable
+{
+	border:0;
+}
+
+#filterTable td
+{
+	border: 0;
+}
+
+#preview
+{
+	display: none;
+}
+#add-category{
+	font-size: 18px;
+   font-weight: bold;	
+   color: green;
+   padding-left: 3px;
+}
+.deactivate-category{
+	font-size: 16px;
+   font-weight: bold;	
+   color: red;
+   padding-left: 3px;
+}
+.category-name{
+	border:0;
+	width:250px;
+	padding:3px;
+}
+.warning{
+	color:red;
+	text-align:center;
+	margin-top:0;
+	margin-bottom:0;
+}

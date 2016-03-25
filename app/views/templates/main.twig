@@ -1,0 +1,210 @@
+﻿<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	
+	<title>OIT [[templateData.areaName]]</title>
+	<meta name="description" content="Description about your department. This text displays in the Google search results." />
+	<meta name="author" content="Your Department Name" />
+	<meta name="keywords" content="keyword 1, keyword 2, keyword 3">
+	
+	<meta name="viewport" content="width=device-width" />
+	
+	<link rel="shortcut icon" href="https://[[templateData.server]]/includes/template/img/favicon.ico" />
+	<link rel="stylesheet" href="https://[[templateData.server]]/includes/template/css/style.css" />	
+
+	<script src="https://[[templateData.server]]/includes/template/js/libs/modernizr-2.0-basic.min.js"></script>
+
+	[# jQuery include that allows angular to run #]
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+	[# Script to allow the superuser button to function #]
+	[% if templateData.canSU %]
+	<script src="https://[[templateData.server]]/static/js/misc/superuser.js"></script>
+	[% endif %]
+
+	[# Script for controlling notifications #]
+	<script>
+		var notificationNetId = "[[templateData.netId]]";
+		var connection = new WebSocket("wss://[[templateData.notificationsUrl]]/listen?auth=[[templateData.jwt]]");
+	</script>
+
+	[# For fancy on-site notifications #]
+	<link rel="stylesheet" href="https://[[templateData.server]]/static/css/misc/notifications.css" />
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script src="https://[[templateData.server]]/static/js/misc/notifications.js"></script>
+	
+	[# Use this block to include any necessary files #]
+	[% block headerScripts %] [% endblock %]
+
+</head>
+<body>
+	<header id="main-header">
+		<div id="header-top" class="wrapper">
+			<div id="logo">
+				<a href="http://www.byu.edu/" class="byu"><img src="https://[[templateData.server]]/includes/template/img/byu-logo-small.gif" alt="BYU Logo" /></a> <a href="http://it.byu.edu" id="parent">Office of Information Technology</a>
+			</div>
+				
+				[% if templateData.authenticated %]
+					<a href="/" id="site-name">[[templateData.areaName]]</a> 
+				[% endif %]
+			 
+			
+			<div id="search-container">
+				[% if templateData.authenticated %]
+					[% if templateData.canSU %]
+						[% if templateData.isSU %]
+							<a id="superuserButton" onclick="stop('[[templateData.netId]]')" class="button">Stop Superuser</a>
+						[% else %]
+							<a id="superuserButton" onclick="elevate('[[templateData.netId]]')" class="button">Elevate to Superuser</a>
+						[% endif %]
+					[% endif %]
+					<a href="/logout" class="button">Logout [[templateData.firstName]] [[templateData.lastName]]</a>
+				[% else %]
+					<a href="/login" class="button">Log In</a>
+				[% endif %]
+
+				<!-- SEARCH - set up with GSA default; change URL in action if you want to use different product -->
+				<form method="get" action="http://gurgle2.byu.edu/search"> 
+					<!-- Change placeholder text to be specific for your implementation -->
+					<input type="text" name="q" id="search" placeholder="Search Organization" />
+					<input type="image" src="https://[[templateData.server]]/includes/template/img/search-button-rnd.png" alt="Search" id="search-button" value="Search" />
+					<!-- Uncomment next line and insert your custom collection name -->
+					<!-- input type="hidden" name="site" value="default_collection_name" -->
+					<!-- Insert your custom frontend name in place of default in next line -->
+					<input type="hidden" name="client" value="default_frontend">
+					<input type="hidden" name="output" value="xml_no_dtd">
+					<input type="hidden" name="proxystylesheet" value="default_frontend">
+				</form>
+			</div>
+			
+			[% if templateData.authenticated %]
+			<nav id="secondary-nav">
+
+			<ul>
+			[# Quick links #]
+			<li>
+				<a href="#">Quick links</a>
+				<div class="sub links">
+					[% for quicklink in templateData.quicklinks %]
+						<a href="[[quicklink.url]]" target='_blank'>[[quicklink.name]]</a>
+					[% endfor %]
+					<a href='/quicklinks/index'><b>Edit Quick links</b></a>
+				</div>
+			</li>
+			[# Drop down menu for areas #]
+			[% if templateData.areas|length > 1 %]
+				<li>
+				<a href="#">Area</a>
+				<div class="sub links">
+					[% for area in templateData.areas %]
+						<a href="" onclick="document.cookie='area=[[area.id]]; path=/';">[% if area.id == templateData.area %]* [% endif %][[area.name]]</a>
+					[% endfor %]
+				</div>
+				</li>
+			[% endif %]
+
+			[# Control environment, Dev/Stg/Prod #]
+			[% if templateData.isSU %]
+				<li>
+					<a href="#">Environment</a>
+					<div class="sub links">
+						<a href="" onclick="document.cookie='environment=0; path=/';">[% if templateData.environment == "DEV" %]* [% endif %]Development</a>
+						<a href="" onclick="document.cookie='environment=1; path=/';">[% if templateData.environment == "STAGE" %]* [% endif %]Stage</a>
+						<a href="" onclick="document.cookie='environment=2; path=/';">[% if templateData.environment == "PROD" %]* [% endif %]Production</a>
+					</div>
+				</li>
+			[% endif %]
+			[% if templateData.isSU %]
+				<li>
+					<a href="#">Development Tools</a>
+					<div class="sub links">
+						<a href="/resources/index">Resources</a>
+						<a href="/notifications/types">Notification Types</a>
+						<a href="/tools/addLink">Add link</a>
+						<a href="/tools/editLink">Edit link</a>
+						<a href="/areaCreator">Area Creator</a>
+						<a href="/areaAdmin">Area Admin</a>
+						<a href="/areaCreator/apps.php">App Editor</a>
+						<a href="/areaCreator/permissions.php">Old Permission Editor</a>
+						<a href="/areaCreator/appPermissions.php">Old App Permission Editor</a>
+						<a href="/heimdall">Heimdall</a>
+					</div>
+				</li>
+			[% endif %]
+			[# Notification inbox #]
+			[% if templateData.areas|length >= 1 %]
+			[% if templateData.authenticated %]
+			<li>
+				<a id="notificationsDropdownHeader" href="#">Notifications</a>
+				<div id="notificationsDropdown" class="sub links">
+				</div>
+			</li>
+			</ul>
+			</nav>
+			[% endif %]
+			[% endif %]
+
+		</div>
+		
+		[# Main navigation links #]
+		<nav id="primary-nav" class="no-js">
+			<ul>
+				[% for parentLink in templateData.links %]
+				<li>
+					<a href="[% if parentLink.url != null %][[parentLink.url]][% endif %]"[% if parentLink.newTab == true %] target='_blank'[% endif %]>[[parentLink.name]]</a>
+
+					[% if parentLink.children|length > 0 %]
+					<div class="sub">
+						<div class="links">
+							[% for childLink in parentLink.children %]
+							<a href="[% if childLink.url != null %][[childLink.url]][% endif %]"[% if childLink.newTab == true %] target='_blank'[% endif %]>[[childLink.name]]</a>
+
+							[% if childLink.children|length > 0 %]
+							<div class="sublinks">
+								[% for grandchildLink in childLink.children %]
+									<a href="[% if grandchildLink.url != null %][[grandchildLink.url]][% endif %]"[% if grandchildLink.newTab == true %] target='_blank'[% endif %]>[[grandchildLink.name]]</a>
+								[% endfor %]
+							</div>
+							[% endif %]
+
+							[% endfor %]
+						</div>
+					</div>
+					[% endif %]
+
+				</li>
+				[% endfor %]
+			</ul>
+		</nav>
+		[% endif %]
+
+	</header>
+
+<div id="content" class="wrapper clearfix">
+
+	[# Place main page content here #]
+	[% block content %] [% endblock %]
+
+	</div>	
+		
+		<div id="footer-bottom">
+			<p>
+				<a target='_blank' href="http://byui.edu/">BYU-Idaho</a>
+				<a target='_blank' href="http://byuh.edu/">BYU-Hawaii</a>
+				<a target='_blank' href="http://www.ldsbc.edu/">LDS Business College</a>
+				<a target='_blank' href="http://lds.org/">The Church of Jesus Christ of Latter-day Saints</a>
+			</p>
+			<p><a target='_blank' href="http://home.byu.edu/home/copyright">Copyright&#169; 2011, All Rights Reserved</a></p>
+		</div>
+	</footer>
+	<!--CONTENT END-->
+
+	[# Use this block to add included scripts in the footer #]
+	[% block footerScripts %] [% endblock %]
+	<script src="https://[[templateData.server]]/includes/template/js/script.js"></script>
+	
+</body>
+</html>

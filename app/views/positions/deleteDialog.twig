@@ -1,0 +1,49 @@
+
+<div hidden>
+	<div id="delete-dialog" title="Reassign Employees">
+		<p class="text-center">The position '{{deleting.positionName}}' cannot be deleted while 
+		active employees are still assigned that position. Use the follwing table to reassign employees 
+		to a new valid position, then click submit to update the employees and delete the position.</p>
+		<form ng-submit="delete_form.$valid && submitDelete(); delete_form.$setPristine()" 
+			name="delete_form" novalidate>
+			<table class="full-width">
+				<thead>
+					<tr>
+						<th class="ui-state-default">
+							Employee 
+						</th>
+						<th class="ui-state-default">
+							Position 
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="ui-widget">
+						<td><b>All</b></td>
+						<td><select ng-change="updateAll()" ng-model="updateMultiple" name="all"
+							ng-options="p.positionId as p.positionName for p in positions | filter:{positionId:'!'+deleting.positionId}">
+								<option value="">--Select New Position--</option>
+						</select></td>
+					</tr>
+					<tr class="ui-widget" ng-repeat="employee in affected | orderBy:'+firstName'">
+						<td>{{employee.firstName}} {{employee.lastName}}</b></td>
+					<td><select ng-model="employee.position" ng-change="checkValid()" name="{{employee.netID}}"
+							ng-options="p.positionId as p.positionName for p in positions | filter:{positionId:'!'+deleting.positionId}">
+								<option value="">--Select New Position--</option>
+						</select></td>
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+			<div class="modal-footer row center text-center">
+				<input id="delete-submit" type="submit" 
+					ng-disabled="!valid"
+					class="ui-button ui-widget ui-button-text-only ui-corner-all"
+					ng-class="{'ui-state-default' : valid, 
+						'ui-state-active' : !valid}">
+				</input>
+			</div>
+		</form>
+	</div>
+</div>
+

@@ -1,0 +1,49 @@
+.center
+{
+	margin:auto;
+	width:100%;
+	text-align:center;
+}
+
+.individualProgress
+{
+	width:55%; 
+	float:right;
+}
+
+.ui-progressbar 
+{
+    height: 1.2em;
+	text-align: left;
+}
+.ui-progressbar-value {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+	text-align: left;
+}
+.divWidth
+{
+	padding:1px;
+
+}
+
+.barWidth
+{
+	padding:1px;
+}
+
+td
+{
+	text-align: left;
+    width: 130px;
+}
+
+.individualStats
+{
+	left:70px;
+	float:left;
+	position:relative;
+	width:350px;
+}
+

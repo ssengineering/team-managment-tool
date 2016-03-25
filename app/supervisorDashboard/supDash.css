@@ -1,0 +1,414 @@
+#content
+{
+	margin-bottom: 0px;
+}
+
+.clearMe
+{
+	clear: both;
+	width: 0px;
+	height: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.reminderAlert
+{
+	width: 0px;
+	height: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.no-close .ui-dialog-titlebar-close
+{
+    display: none
+}​
+
+.myAllClass
+{
+	margin: 0px;
+	padding: 0px;
+	height: auto;
+}
+
+.supDashTitle
+{
+	float: left;
+	font-size: 3.5em;
+	font-weight: bold;
+	color: #003366;
+	text-align: right;
+	width: 70%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.kbSearch
+{
+	float: left;
+	width: 30%;
+	font-weight: bold;
+	height: 4.5em;
+	vertical-align: middle;
+}
+
+.byuKbSearch
+{
+	font-size: 1.25em;
+	margin:  .5em 0px 0px 0px;
+	text-align: center;
+}
+
+.chqKbSearch
+{
+	font-size: 1.25em;
+	margin: 0px 0px .5em 0px;
+	text-align: center;
+}
+
+.leftColumn
+{
+	float: left;
+	width: 50%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.supReport
+{
+	width: 100%;
+}
+
+.supSubTitle
+{
+	font-weight: bold;
+	text-align: left;
+	margin-left: 4%;
+	margin-top: .5em;
+	margin-bottom: .5em;
+	float: left;
+	width: 56%;
+}
+
+.viewSupReport
+{
+	float: left;
+	width: 37%;
+	margin-right: 3%;
+}
+
+.supReportForm
+{
+	float: left;
+	width: 100%;
+	height: auto;
+}
+
+.reportEntry
+{
+	float: left;
+	width: 100%;
+	height: 6em;
+}
+
+.reportEntryTextArea
+{
+	width: 96%;
+	height: 90%;
+}
+
+.reportGroups
+{
+	float: left;
+	width: 80%;
+	text-align: center;
+}
+
+.notificationGroup
+{
+	font-size: .75em;
+	font-weight: bold;
+	float: left;
+	margin-right: 8px;
+}
+
+.supReportEntryNotificationGroup
+{
+	vertical-align: middle;
+}
+
+.reportGroupsLabel
+{
+	width: 100%;
+	font-weight: bold;
+	font-size: .9em;
+	text-decoration: none;
+	color: #003366;
+	text-align: center;
+}
+
+.reportGroupsLabel:hover
+{
+	width: 100%;
+	font-weight: bold;
+	font-size: .9em;
+	text-decoration: none;
+	color: #003366;
+	text-align: center;
+}
+
+.submitReport
+{
+	float: left;
+	width: 17%;
+	margin-right: 3%;
+	text-align: right;
+}
+
+.highPriority
+{
+	float: left;
+	width: 96%;
+}
+
+.textBoss
+{
+	float: left;
+	width: 40%;
+	margin: 0;
+	margin-top: 7px;
+	padding: 0;
+	text-align: right;
+}
+
+.hiPriTickets
+{
+	float: left;
+	width: 100%;
+}
+
+#hiPriTable
+{
+	width: 100%;
+}
+
+.infoRequest
+{
+	float: left;
+	width: 100%;
+	border: 1px solid rgb(187, 187, 187);
+	border-left: 1px dotted rgb(204, 204, 204);
+	border-right: 1px dotted rgb(204, 204, 204);
+	padding-bottom: 2em;
+}
+
+.engOnCall
+{
+	display: none;
+	float: left;
+	width: 35%;
+	height: 10em;
+	font-size: .75em;
+	font-weight: bold;
+}
+
+.rightColumn
+{
+	float: left;
+	width: 50%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.dueTasks
+{
+	width: 100%;
+	height: 9em;
+	overflow: auto;
+	font-size: .96em;
+	border: 1px solid silver;
+}
+
+.rfcWrapper
+{
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+.rfcs
+{
+	width: 100%;
+	height: 300px;
+	overflow: auto;
+	font-size: 90%;
+	border: 1px solid silver;
+}
+
+#rfcTable
+{
+	width: 100%;
+	table-layout: fixed;
+	word-wrap: break-word;
+}
+
+.supNotes
+{
+	width: 100%;
+	height: auto;
+	min-height: 10em;
+}
+
+.createOneShot
+{
+	float: left;
+	text-align: right;
+	width: 40%;
+	margin: 0;
+	padding: 0;
+}
+
+.makeANote
+{
+	float: left;
+	width: 40%;
+	margin: 0;
+	padding: 0;
+	text-align: right;
+}
+
+.supNoteLog
+{
+	width: 100%;
+}
+
+.whoHere
+{
+}
+
+.whos
+{
+	height: 11.75em;
+	max-height: 11.75em;
+	overflow: auto;
+}
+
+.who
+{
+	width: 10%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.whosHereLinks
+{
+	text-align: center;
+	width: 33%;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	font-weight: bold;
+}
+
+.someone
+{
+	border: 1px;
+	height:7em;
+	width: 7em;
+}
+
+a.tooltip
+{
+    position: relative;
+    z-index: 24;
+	text-decoration: none;
+}
+
+a.tooltip:hover
+{
+    z-index: 25;
+	text-decoration: none;
+}
+
+a.tooltip span
+{
+    display: none;
+	
+}
+
+a.tooltip:hover span
+{
+    display: block;
+    position: absolute;
+	font-size: 70%;
+    top: 5em;
+    left: 8em;
+    width: 11em;
+    padding: 3px;
+	border: 1px solid black;
+    background-color: #eeeeee;
+    color: #000;
+	text-align:left;
+}
+
+img.bottom {vertical-align:middle;}
+
+.performance
+{
+	margin-left:10px;
+	margin-top:5px;
+}
+
+.rfc_update_div{
+	width: calc(100%-20px);
+	margin: 0;
+	padding: 10px;
+	background-color: #efefef;
+}
+
+.rfc_update_cell{
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 2px;
+}
+
+.rfc_input_row {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	padding: 2px;
+}
+
+.rfc_comment_area{
+	width: 80%;
+	display:block;
+	margin: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.rfc_time_label{
+	width: 140px;
+	display: inline-block;
+}
+
+.rfc_selected_row{
+	font-weight:bold !important ;
+}
+
+.small_input{
+	width: 30px;
+	margin-left:3px;
+	margin-right:3px;
+}
+
+#modalWindowPrompt {
+	text-align: center;
+}
+
+#modalWindowInputPrompt {
+	width: 90%;
+	height: 50px;
+	text-align: left;
+}

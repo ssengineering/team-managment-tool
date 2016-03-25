@@ -1,0 +1,37 @@
+#employeeListWrapperDiv {
+	border: solid;
+	border-color: #444444;
+	border-width: 1px;
+	width: 100%;
+	padding: 4px;
+	border-radius: 3px;
+	overflow-y: auto;
+}
+#employeeListWrapperDiv #searchBox {
+	width: 98%;
+	font-size: 1.2em;
+	color: #444444;
+	outline: 0px;
+	border: solid;
+	border-color: #444444;
+	border-width: 1px;
+	border-radius: 3px;
+	padding-left: 2px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+}
+#employeeListWrapperDiv #activitySelect {
+	width: 50%;
+	margin-right: 25%;
+	margin-left: 25%;
+	background-color: #FFFFFF;
+	color: #444444;
+	border-radius: 3px;
+	border: solid;
+	border-width: 1px;
+	border-color: #444444;
+	outline: 0px;
+}
+#employeeListWrapperDiv .employeeLink {
+	font-size: 1.1em;
+}

@@ -1,0 +1,12 @@
+.bootstrap .panel-body {
+	padding: 10px;
+}
+
+.bootstrap .panel {
+	line-height: 2.5em;
+}
+
+.bootstrap .none {
+	color: #888888;
+	background-color: #DDDDDD;
+}

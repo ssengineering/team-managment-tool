@@ -1,0 +1,117 @@
+.clearMe
+{
+	clear: both;
+	width: 0px;
+	height: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.divTh
+{
+	float: left;
+	background: none repeat scroll 0 0 #E0E0E0;
+	border-left: 1px solid #C9C9C9;
+	border-right: 1px solid #C9C9C9;
+	border-top: 1px solid #BBBBBB;
+	border-bottom: 1px solid #BBBBBB;
+	padding: 0.125em 0.5em;
+	font-weight: bold;
+	text-align: left;
+}
+
+.divTd
+{
+	float: left;
+	border-left: 1px solid #C9C9C9;
+	border-right: 1px solid #C9C9C9;
+	border-top: 1px solid #BBBBBB;
+	border-bottom: 1px solid #BBBBBB;
+	font-weight: bold;
+	padding: 0.125em 0.5em;
+}
+
+.execNoteContainer
+{
+	width: 100%;
+	height: auto;
+}
+
+
+
+.execNote
+{
+	width: 100%;
+	height: auto;
+	cursor: hand;
+	cursor: pointer;
+}
+	.priority
+	{
+		min-width: 5.5%;
+		max-width: 5.5%;
+		text-align: center;
+	}
+	.ticket
+	{
+		min-width: 12%;
+		max-width: 12%;
+		text-align: center;
+	}
+	.subject
+	{
+		min-width: 40%;
+		max-width: 40%;
+		text-align: left;
+	}
+	.start
+	{
+		min-width: 17%;
+		max-width: 17%;
+		text-align: center;
+	}
+	.end
+	{
+		min-width: 17%;
+		max-width: 17%;
+		text-align: center;
+	}
+
+
+
+.execNoteHistory
+{
+	width: 100%;
+	height: auto;
+}
+	.type
+	{
+		min-width: 10%;
+		max-width: 10%;
+		text-align: left;
+		display: table-cell;
+	}
+	.timestamp
+	{
+		min-width: 17%;
+		max-width: 17%;
+		text-align: center;
+		height: 100%;
+		display: table-cell;
+	}
+	.text
+	{
+		min-width: 41%;
+		max-width: 41%;
+		text-align: left;
+		height: auto;
+		display: table-cell;
+	}
+	.submitter
+	{
+		max-width: 18%;
+		min-width: 18%;
+		text-align: center;
+		height: 100%;
+		display: table-cell;
+	}

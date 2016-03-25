@@ -1,0 +1,71 @@
+/*
+*	Name: assessments.css
+*	Application: Assessments
+*	Site: ops.byu.edu
+*	Author: Joshua Terrasas
+*
+*	Description: This is the main CSS file for the Assessments
+*	app. All of the styling of the app is contained in this
+*	file, except for the styling that is controlled by the
+*	jQuery library, and the main CSS file for OPS website.
+*/
+
+.accordionHeader
+{
+	margin-right: 10%;
+}
+
+.warningText
+{
+	width: 420px;
+	padding: 0.4em;
+	margin: 2%;
+}
+
+.warningText h3
+{
+	margin: 0;
+	padding: 0.4em;
+	text-align: center;
+	color: red;
+}
+
+.listContainer
+{
+	margin: 1em;
+}
+
+#title
+{
+	text-align: center;
+	margin-top: 4%;
+	margin-bottom: 2%;
+}
+
+#modeMenu
+{
+	margin-left: auto;
+	margin-right: auto;
+	width: 34%;
+}
+
+#modeContent
+{
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+/*Developing*/
+#navigationToolBar
+{
+    display: block;
+    position: center;
+    padding: 12px 4px;
+}
+
+#buttonToolBar
+{
+    margin-left: 40%;
+}
+/*Developing*/
+

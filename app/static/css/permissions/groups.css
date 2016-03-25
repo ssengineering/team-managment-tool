@@ -1,0 +1,71 @@
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.no-margin {
+    margin-bottom: 0 !important;
+}
+
+.row-margin {
+    margin-bottom: 18px;
+}
+
+.hide-overflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: block;
+}
+
+.rename-group {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.group-name-title {
+    padding-right: 15px;
+}
+
+.delete-group {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.group-dropdown {
+    width: 100%;
+}
+
+.second-button {
+    margin-top: 18px !important;
+}
+
+.group-controls > button {
+    margin-bottom: 18px !important;
+    width: 100%;
+}
+
+.group-controls > hr {
+    margin-top: 0px;
+}
+
+.form-control-clear {
+    pointer-events: auto !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+.well-title {
+    margin-top: 0 !important;
+    text-align: center;
+}

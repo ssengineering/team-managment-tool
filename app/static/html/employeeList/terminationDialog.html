@@ -1,0 +1,24 @@
+<div>
+	<div style="margin-bottom:4px;font-weight:bold">
+		<label for="attendance">Attendance:</label>
+		<select ng-options="opt for opt in termOptions" ng-model="termination.attendance" id="attendance" class="input selectMenu"></select>
+	</div>
+	<div style="margin-bottom:4px;font-weight:bold">
+		<label for="Attitude">Attitude:</label>
+		<select ng-options="opt for opt in termOptions" ng-model="termination.attitude" id="attitude" class="input selectMenu"></select>
+	</div>
+	<div style="margin-bottom:4px;font-weight:bold">
+		<label for="Performance">Performance:</label>
+		<select ng-options="opt for opt in termOptions" ng-model="termination.performance" id="performance" class="input selectMenu"></select>
+	</div>
+	<div style="margin-bottom:4px;font-weight:bold">
+		<label for="Rehirable">Rehirable:</label>
+		<select ng-options="opt for opt in rehirableOpts" ng-model="termination.rehirable" id="rehirable" class="input selectMenu"></select>
+	</div>
+	<div style="font-weight:bold">
+		<label for="reasons">Reasons:</label>
+		<textarea ng-model="termination.reasons" class="input" rows=4></textarea>
+	</div>
+	<h4>Submitting this form will revoke this user's rights and permissions and send the corresponding termination emails</h4>
+	<img src="/static/images/spinner.gif" style="margin:auto;display:block" ng-show="showSpinner">
+</div>

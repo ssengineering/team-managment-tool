@@ -1,0 +1,121 @@
+#employeeSearch {
+    background-color: #FFFFFF;
+    border: 1px solid gray;
+    margin: 0;
+		max-height: 700px;
+		min-height: 700px;
+    position: relative;
+    width: 240px;
+		float: left;
+}
+
+#searchAndEmployeeInfo {
+    border: 1px solid gray;
+    height: 190px;
+    margin: 0 auto;
+    padding: 0.5%;
+    position: relative;
+    width: 83%;
+}
+
+#employeeInfo
+{
+	position: relative;
+	left: 42%;
+	top: -60%;
+}
+
+#rightsInfo
+{
+	position: relative;
+	/*border: 1px solid gray; */
+	float: left;
+	width:688px;
+	margin-left: 10px;
+}
+
+.imagetable
+{
+	width: 600px;
+	float: left;
+	table-layout: fixed;
+}
+
+.divTh
+{
+	float: left;
+	width: 100%;
+	background: none repeat scroll 0 0 #E0E0E0;
+	border-left: 1px solid #C9C9C9;
+	border-right: 1px solid #C9C9C9;
+	border-top: 1px solid #BBBBBB;
+	border-bottom: 1px solid #BBBBBB;
+	padding: 0.125em 0.5em;
+	font-weight: bold;
+	text-align: left;
+}
+
+.divTd
+{
+	float: left;
+	vertical-align: middle;
+	border-left: 1px solid #C9C9C9;
+	border-right: 1px solid #C9C9C9;
+	border-top: 1px solid #BBBBBB;
+	border-bottom: 1px solid #BBBBBB;
+	font-weight: bold;
+	padding: 0.125em 0.5em;
+}
+
+.rightName
+{
+	width: 170px;
+}
+
+.rightDetails
+{
+	width: 120px;
+}
+
+.rightType
+{
+	width: 45px;
+}
+
+.childButtons
+{
+	width: 280px;
+	text-align: right;
+}
+
+.childButton
+{
+	text-align: right;
+	padding: 0;
+	border: 0;
+	width: 66%;
+	float: right;
+}
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+	cursor: pointer;
+	width: 180px;
+}
+
+.childCheckbox
+{
+	text-align: right;
+	padding: 0;
+	border: 0;
+	width: 34%;
+	float: right;
+}
+
+.clearMe
+{
+	clear: both;
+	width: 0px;
+	height: 0px;
+	margin: 0px;
+	padding: 0px;
+}

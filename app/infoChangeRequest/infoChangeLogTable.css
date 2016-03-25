@@ -1,0 +1,33 @@
+table{
+table-layout:fixed;
+}
+
+/*Type*/
+td:first-child {
+width: 40px;
+}
+
+/*Poster*/
+td:first-child + td {
+width: 40px;
+}
+
+/*Date*/
+td:first-child + td + td {
+width: 40px;
+}
+
+/*Original Note*/
+td:first-child + td + td + td {
+width: 250px;
+}
+
+/*Location*/
+td:first-child + td + td + td + td {
+width: 120px;
+}
+
+/*Comments*/
+td:first-child + td + td + td + td + td + td {
+width: 250px;
+}

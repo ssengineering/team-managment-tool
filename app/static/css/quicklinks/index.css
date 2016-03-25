@@ -1,0 +1,10 @@
+.bootstrap .alert {
+	padding: 8px;
+	margin-bottom: 0px;
+}
+
+.bootstrap .table tr .removal-column {
+	padding-left: 0px;
+	padding-right: 0px;
+	vertical-align: middle;
+}

@@ -1,0 +1,70 @@
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.row-margin {
+    margin-bottom: 18px;
+}
+
+.sentence {
+    text-align: center;
+}
+
+.bootstrap .btn,
+.bootstrap .dropdown-menu {
+    width: 100%;
+}
+
+.permissions-tables {
+    padding: 0 15px;
+}
+
+table,
+td,
+th {
+    border: none;
+}
+
+.searchVerbs {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.form-control-clear {
+    pointer-events: auto !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+.panel-heading {
+    font-weight: bold;
+    text-align: center;
+}
+
+.verb-name {
+    text-align: left;
+}
+
+.remove-x {
+    width: 20% !important;
+    text-align: center !important;
+}
+
+.glyphicon-remove {
+    cursor: pointer;
+}
+
+#description {
+	font-size: 1.2em;
+	font-weight: bold
+}
+
+#descriptionDiv {
+	margin-bottom: 20px;
+}

@@ -1,0 +1,114 @@
+<h1 class="text-center">{{table.name}}</h1>
+<div ng-if="table.description" class="text-center ui-widget">{{table.description}}</div>
+<div ng-show="table.error.messages.length" class="alert row center text-center ui-widget">
+	<span class="ui-icon ui-icon-closethick red pull-left" title="Dismiss"
+		ng-click="table.error.messages.length=0"></span>
+	<b>SERVER ERROR:</b> The server responded with the following 
+		error<span ng-show="table.error.messages.length > 1">s</span>:<br>
+	<span ng-repeat="msg in table.error.messages track by $index">"{{msg}}"<br></span>
+	<br>
+	If the problem persists, please contact the OIT Service Desk (2-4000).
+</div>
+<div class="row center">
+	<button ng-if="!table.no_inserts" id="add-item-btn"  ng-click="table.openAddDialog()"
+		class="btn btn-default pull-left">
+		<span class="ui-icon ui-icon-plusthick"></span>
+	</button>
+	<input type="text" class="form-control pull-right" ng-model="table.search.$" 
+	placeholder="Search" id="search-field" ng-change="table.updatePages()">
+</div>
+<div class="row center">
+	<table id="crud-table" class="full-width">
+		<thead>
+			<tr>
+				<th ng-repeat="column in table.columns" ng-click="(table.sort_field == (column.sort_key ? column.sort_key : column.key)) ? 
+					table.sort_order = !table.sort_order : table.sort_field=(column.sort_key ? column.sort_key : column.key)" class="ui-state-default">
+					{{column.title}} 
+					<span class="ui-icon ui-icon-carat-1-n" 
+						ng-show="table.sort_order && (table.sort_field == (column.sort_key ? column.sort_key : column.key))"></span>
+					<span class="ui-icon ui-icon-carat-1-s" 
+						ng-show="!table.sort_order && (table.sort_field == (column.sort_key ? column.sort_key : column.key))"></span>
+					<span class="ui-icon ui-icon-carat-2-n-s" 
+						ng-show="table.sort_field != (column.sort_key ? column.sort_key : column.key)"></span>
+				</th>
+				<th class="ui-state-default" ng-if="!table.no_deletes"></th>
+			</tr>
+		</thead>
+		<tr ng-repeat="item in table.items.list | filter:table.search:false 
+			| orderBy:table.sort_field:table.sort_order 
+			| offset:table.page*table.page_size | limitTo: table.page_size"
+			ng-class="{'alert-danger' : item.error}" class="ui-widget">
+			<td ng-repeat="column in table.columns">
+				<form ng-submit="item.editing[column.key] = false" name="row_form" novalidate>
+					<div ng-show="!item.editing[column.key] && row_form.field.$valid && column.type!='checkbox'
+						|| column.no_updates" style="min-height: 20px" ng-click="item.editing[column.key]=true">
+						{{(column.type == 'date') ?	(item[column.key] | date:column.date_format) : 
+						((column.type == 'employee' && item.employee_object) ? 
+							item.employee_object.firstName + ' ' + item.employee_object.lastName : 
+						((column.type == 'employee' && item.firstName && item.lastName) ? 
+							item.firstName + ' ' + item.lastName : 
+							item[column.key]))}}
+					</div>
+					<input ng-if="!column.no_updates && column.type!='employee'" 
+					ng-show="item.editing[column.key] || !row_form.field.$valid
+					|| column.type=='checkbox'" type="{{column.type}}" ng-model="item[column.key]" name="field"
+					value="{{item[column.key]}}" ng-model-options="{ updateOn: 'blur' }" step="{{column.step}}" 
+					ng-focus="item.editing[column.key]=true" 
+					ng-required="column.required" ng-blur="item.editing[column.key]=false; 
+					row_form.field.$valid ? table.updateItem(item) : null;"
+					ng-change="column.type=='checkbox' ? table.updateItem(item) : null" />
+					<div ng-if="column.type=='employee'" 
+						tmt-employee="search" tmt-name="field" tmt-required="column.required" 
+						tmt-val="item.employee_object" tmt-netid="item[column.key]" 
+						tmt-blur="table.onItemBlur"
+						tmt-blur-params="{'item' : item, 'valid' : row_form.field.$valid, 'column' : column}"
+						ng-show="!column.no_updates && (item.editing[column.key] || !row_form.field.$valid)">
+					</div>
+					<input type="submit" hidden />
+				</form>
+			</td>
+			<td ng-click="table.deleteItem(item)" ng-if="!table.no_deletes">
+				<span class="ui-icon ui-icon-closethick red"></span>
+			</td>
+		</tr>
+		<tr >
+		</tr>
+	</table>
+</div>
+<div class="row center text-center" ng-show="table.pages.length > 1">
+	<div class="col center">
+		<nav>
+			<ul class="pagination">
+				<li class="ui-button ui-widget ui-corner-left page-button"
+				ng-class="{'ui-state-default' : (table.page!=0), 'ui-state-active' : (table.page==0)}"
+				ng-show="table.pages.length > 3"
+				ng-click="table.page=0">
+				<span class="ui-icon ui-icon-seek-prev"></span></li>
+				<li class="ui-button ui-widget page-button"
+				ng-class="{'ui-state-default' : (table.page!=0), 'ui-state-active' : (table.page==0)}"
+				ng-click="(table.page != 0) ? table.page = table.page - 1 : null">
+				<span class="ui-icon ui-icon-triangle-1-w"></span></li>
+				<li class="ui-button ui-widget page-button"
+				ng-class="{'ui-state-default' : (table.page!=i), 'ui-state-active' : (table.page==i)}"
+				ng-repeat="i in table.pages | offset:(table.page-2 >= 0) ? table.page-2 : 0 | limitTo:5" 
+				ng-class="{'ui-state-active' : (table.page == i)}"
+				ng-click="table.page=i">{{i+1}}</li>
+				<li class="ui-button ui-widget page-button"
+				ng-class="{'ui-state-default' : (table.page!=table.pages.length - 1), 
+				'ui-state-active' : (table.page==table.pages.length - 1)}"
+				ng-click="(table.page!=table.pages.length-1) ? table.page = table.page+1 : null">
+				<span class="ui-icon ui-icon-triangle-1-e"></span></li>
+				<li class="ui-button ui-widget ui-corner-right page-button"
+				ng-class="{'ui-state-default' : (table.page!=table.pages.length - 1), 
+				'ui-state-active' : (table.page==table.pages.length - 1)}"
+				ng-show="table.pages.length > 3"
+				ng-click="table.page=table.pages.length-1">
+				<span class="ui-icon ui-icon-seek-next"></span></li>
+			</ul>
+		</nav>
+	</div>
+</div>
+<span ng-if="!table.no_inserts">
+<div add-dialog table="table" hidden>
+</div></span>
+

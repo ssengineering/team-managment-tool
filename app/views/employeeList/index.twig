@@ -1,0 +1,209 @@
+[% extends "templates/main.twig" %]
+
+[% block headerScripts %]
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="/static/css/employeeList/index.css">
+<link rel="stylesheet" href="https://[[templateData.server]]/includes/template/css/jquery-ui-1.9.0.custom.css" />
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="/static/tmt_page.js"></script>
+<script src="/static/js/employeeList/index.js"></script>
+<script src="/static/js/employeeList.js"></script>
+<script src="/static/js/employeeSelect.js"></script>
+[% endblock %]
+
+[% block content %]
+
+<script>
+	var group          = '[[templateData.area]]';
+	var userNetId      = '[[templateData.netId]]';
+	var terminatedPerm = [[terminatedPerm]];
+	var editPerm       = [[editPerm]];
+</script>
+
+<div ng-app="tmt_page" ng-controller="employeePageCtrl">
+	<div ng-show="loading" style="width:10%;margin:auto;margin-top:80px">
+		<img src="/static/images/spinner.gif">
+	</div>
+	<div ng-show="!loading">
+	<h1 style="text-align:center;margin-top:10px;margin-bottom:15px">Employee List</h1>
+	<!-- Alerts -->
+	<div class="alertGood" ng-show="success" ng-click="success = !success">Employee was updated successfully (click to dismiss)</div>
+	<div class="alertBad" ng-show="failure" ng-click="failure = !failure">An error occurred while trying to update this employee's information. Please try again. (click to dismiss)</div>
+	<div class="alertBad" ng-show="getFail" ng-click="getFail = !getFail">An error occurred while trying to retrieve this employee's information. Please try again. (click to dismiss)</div>
+	<!-- employee list sidebar -->
+	<div style="width:24%;float:left">
+		<div style="height:416px;float:left" ng-include="'/static/html/employeeList.html'" id="employeeListWrapperDiv" ng-controller="listCtrl"></div>
+		[% if editPerm %]<input type="button" id="addButton" value="{{addText}}" ng-click="setAddEmployee()" ng-class="{mainButtonDisabled: edit}">[% endif %]
+	</div>
+	<div style="width:74%;float:right">
+		<div class="leftDiv">
+			<!-- Picture and Edit button -->
+			<div style="width:156px;height:210px;margin-left:auto;margin-right:auto">
+				<img src="[[piPhotoUrl]]?n={{curEmployee.netID}}" alt="Employee Picture"
+					style="height:156px;width:156px;border:solid;border-width:1px;border-radius:3px">
+				<input type="button" id="editButton" value="{{editText}}"
+				  ng-show="(editPermission && curEmployee.netID != '[[templateData.netId]]') || (curEmployee.netID == '[[templateData.netId]]' && curEmployee.area == [[templateData.area]])"
+				  ng-click="setEditEmployee()"
+				  ng-class="{mainButtonDisabled: add}">
+				<input type="button" id="submitButton" value="Save" ng-click="save()" ng-show="add || edit">
+			</div>
+			<!-- Custom Data Fields -->
+			<div style="margin-top:20px;padding-left:20px;padding-right:20px">
+				<h2 style="text-align:center;font-weight:bold;margin-bottom:8px">[[templateData.areaName]] Information</h2>
+				<div class="customInputDiv" ng-repeat="field in fields" ng-class-odd="'customOdd'" ng-class-even="'customEven'">
+					<div class="fieldHeader" style="width:39%;display:inline-block;vertical-align:middle">{{field.name}}:</div>
+					<div style="width:59%;display:inline-block">
+						<input type="text" ng-model="field.value" class="customInput"
+						  ng-disabled="(!edit && !add) || ('[[templateData.netId]]' == curEmployee.netID)"
+						  ng-class="{disabled: (!edit && !add) || ('[[templateData.netId]]' == curEmployee.netID)}">
+					</div>
+				</div>
+			</div>
+			<!-- Div for when a group has no data fields -->
+			<div ng-show="!fields.length" style="padding:15px">
+				<h3 style="text-align:center" ng-show="!customDataError">There are no custom data fields for this group yet</h3>
+				<h3 style="text-align:center" ng-show="customDataError">An error occurred in retrieving group data fields</h3>
+			</div>
+		</div>
+		<!-- Standard Employee Information -->
+		<div class="rightDiv">
+			<h2 style="text-align:center;font-weight:bold;margin-top:0px;margin-bottom:16px">Employee Information</h2>
+			<!-- netId -->
+			<div class="staticDiv">
+				<div class="leftDiv fieldHeader">Net Id:</div>
+				<div class="rightDiv" ng-show="!add" style="overflow:hidden;text-overflow:ellipsis;padding-top:2px;font-size:1.1em">{{curEmployee.netID}}</div>
+				<div class="rightDiv" ng-show="add">
+					<input type="text" ng-model="curEmployee.netID" ng-blur="getEmployeePI(curEmployee.netID)" class="input" ng-disabled="!edit && !add" ng-class="{disabled: !(edit || add)}">
+				</div>
+			</div>
+			<!-- First Name -->
+			<div class="staticDiv">
+				<div class="leftDiv fieldHeader">First Name:</div>
+				<div class="rightDiv">
+					<input type="text" ng-model="curEmployee.firstName" class="input"
+					  ng-disabled="((!edit && !add) || ('[[templateData.netId]]' == curEmployee.netID) || curEmployee.area != [[templateData.area]])"
+					  ng-class="{disabled: (!edit && !add) || ('[[templateData.netId]]' == curEmployee.netID) || curEmployee.area != [[templateData.area]]}">
+				</div>
+			</div>
+			<!-- Last Name -->
+			<div class="staticDiv">
+				<div class="leftDiv fieldHeader">Last Name:</div>
+				<div class="rightDiv">
+					<input type="text" ng-model="curEmployee.lastName" class="input"
+					  ng-disabled="(!edit && !add) || ('[[templateData.netId]]' == curEmployee.netID) || curEmployee.area != [[templateData.area]]"
+					  ng-class="{disabled: (!edit && !add) || ('[[templateData.netId]]' == curEmployee.netID) || curEmployee.area != [[templateData.area]]}">
+					</div>
+			</div>
+			<!-- Phone -->
+			<div class="staticDiv">
+				<div class="leftDiv fieldHeader">Phone:</div>
+				<div class="rightDiv">
+					<input type="text" ng-model="curEmployee.phone" class="input"
+					  ng-disabled="(!edit && !add) || curEmployee.area != [[templateData.area]]"
+					  ng-class="{disabled: (!edit && !add) || curEmployee.area != [[templateData.area]]}">
+				</div>
+			</div>
+			<!-- Email -->
+			<div class="staticDiv">
+				<div class="leftDiv fieldHeader">Email:</div>
+				<div class="rightDiv">
+					<input type="text" ng-model="curEmployee.email" class="input"
+					  ng-disabled="(!edit && !add) || curEmployee.area != [[templateData.area]]"
+					  ng-class="{disabled: (!edit && !add)  || curEmployee.area != [[templateData.area]]}">
+				</div>
+			</div>
+			<!-- BYU ID -->
+			<div class="staticDiv">
+				<div class="leftDiv fieldHeader">BYU ID:</div>
+				<div class="rightDiv"><input type="text" ng-model="curEmployee.byuIDnumber" class="input"
+				  ng-disabled="(!edit && !add) || ('[[templateData.netId]]' == curEmployee.netID) || curEmployee.area != [[templateData.area]]"
+				  ng-class="{disabled: (!edit && !add) || ('[[templateData.netId]]' == curEmployee.netID) || curEmployee.area != [[templateData.area]]}">
+				</div>
+			</div>
+			<!-- Hire Date -->
+			<div class="staticDiv">
+				<div class="leftDiv fieldHeader">Hire Date:</div>
+				<div class="rightDiv">
+					<input type="text" id="hireDate" ng-model="curEmployee.hireDate" class="input"
+					  ng-disabled="(!edit && !add) || ('[[templateData.netId]]' == curEmployee.netID) || curEmployee.area != [[templateData.area]]"
+					  ng-class="{disabled: (!edit && !add) || ('[[templateData.netId]]' == curEmployee.netID) || curEmployee.area != [[templateData.area]]}"
+					  datepicker>
+				</div>
+			</div>
+			<!-- Birth Date -->
+			<div class="staticDiv">
+				<div class="leftDiv fieldHeader">Birth Date:</div>
+				<div class="rightDiv">
+					<input type="text" id="birthDate" ng-model="curEmployee.birthday" class="input"
+					  ng-disabled="(!edit && !add) || ('[[templateData.netId]]' == curEmployee.netID) || curEmployee.area != [[templateData.area]]"
+					  ng-class="{disabled: (!edit && !add) || ('[[templateData.netId]]' == curEmployee.netID) || curEmployee.area != [[templateData.area]]}"
+					  datepicker>
+				</div>
+			</div>
+			<!-- Graduation Date -->
+			<div class="staticDiv">
+				<div class="leftDiv fieldHeader">Graduation Date:</div>
+				<div class="rightDiv">
+					<input type="text" id="graduationDate" ng-model="curEmployee.graduationDate" class="input"
+					  ng-disabled="(!edit && !add) || ('[[templateData.netId]]' == curEmployee.netID) || curEmployee.area != [[templateData.area]]"
+					  ng-class="{disabled: (!edit && !add) || ('[[templateData.netId]]' == curEmployee.netID) || curEmployee.area != [[templateData.area]]}"
+					  datepicker>
+				</div>
+			</div>
+			<!-- Manager -->
+			<div class="staticDiv">
+				<div class="leftDiv fieldHeader">Manager:</div>
+				<div class="rightDiv" ng-show="((edit || add) && !('[[templateData.netId]]' == curEmployee.netID)) && curEmployee.area == [[templateData.area]]"
+				  tmt-employee tmt-class="input" tmt-netid="curEmployee.supervisor" tmt-val="manager" id="fuzzySearchDiv">
+				</div>
+				<div class="rightDiv" ng-show="(!edit && !add) || curEmployee.area != [[templateData.area]] || '[[templateData.netId]]' == curEmployee.netID">
+					<input type="text" id="graduationDate" ng-model="manager.fullName" class="input disabled" disabled>
+				</div>
+			</div>
+			<!-- Position -->
+			<div class="staticDiv">
+				<div class="leftDiv fieldHeader">Position:</div>
+				<div class="rightDiv" ng-show="((edit || add) && !('[[templateData.netId]]' == curEmployee.netID)) && curEmployee.area == [[templateData.area]]">
+					<select class="input selectMenu" ng-options="position.name for position in positions" ng-model="curEmployee.position" style="width:100%"></select>
+				</div>
+				<div class="rightDiv" ng-show="(!edit && !add) || curEmployee.area != [[templateData.area]] || '[[templateData.netId]]' == curEmployee.netID">
+					<input type="text" id="graduationDate" ng-model="curEmployee.position.name" class="input disabled" disabled>
+				</div>
+			</div>
+			<!-- Status -->
+			<div class="staticDiv">
+				<div class="leftDiv fieldHeader">Status:</div>
+				<div class="rightDiv" ng-show="(edit && '[[templateData.netId]]' != curEmployee.netID) && curEmployee.area == [[templateData.area]]">
+					<select class="input selectMenu" ng-options="status.name for status in statuses" ng-model="curEmployee.status" style="width:100%" ng-change="isTerminated(curEmployee.status.code)"></select>
+				</div>
+				<div class="rightDiv" ng-show="add && '[[templateData.netId]]' != curEmployee.netID">
+					<input type="text" ng-model="curEmployee.status.name" class="input disabled" disabled>
+				</div>
+				<div class="rightDiv" ng-show="(!edit && !add) || curEmployee.area != [[templateData.area]] || '[[templateData.netId]]' == curEmployee.netID">
+					<input type="text" id="status" ng-model="curEmployee.status.name" class="input disabled" disabled>
+				</div>
+			</div>
+			<!-- Full Time -->
+			<div class="staticDiv">
+				<div class="leftDiv fieldHeader">Full Time:</div>
+				<div class="rightDiv" ng-show="((edit || add) && !('[[templateData.netId]]' == curEmployee.netID)) && curEmployee.area == [[templateData.area]]">
+					<input type="checkbox" id="fullTime" ng-model="curEmployee.fullTime" class="input" style="width:auto;margin-top:4px">
+				</div>
+				<div class="rightDiv" ng-show="(!edit && !add) || curEmployee.area != [[templateData.area]] || '[[templateData.netId]]' == curEmployee.netID">
+					<input type="text" value="{{curEmployee.fullTime ? 'Yes' : 'No'}}" class="input disabled" disabled>
+				</div>
+			</div>
+			<!-- Wage (For adding a new student employee) -->
+			<div class="staticDiv" ng-show="add && !curEmployee.fullTime && curEmployee.netID != '[[templateData.netId]]'">
+				<div class="leftDiv fieldHeader"> Wage:</div>
+				<div class="rightDiv"><input type="text" ng-model="curEmployee.wage" class="input" placeholder="00.00"></div>
+			</div>
+		</div>
+	</div>
+	<!-- Termination Dialog -->
+	<div id="terminationDialog" dialog></div>
+	<div id="emailDialog" email-dialog></div>
+	</div>
+</div>
+[% endblock %]

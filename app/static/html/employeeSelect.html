@@ -1,0 +1,5 @@
+<select ng-model="value" class="employee-search-input {{tmtClass}}" ng-required="tmtRequired" name="{{tmtName}}"
+ng-change="kickout(value); tmtBlur(tmtBlurParams, value)" style="width : 100%">
+<option ng-repeat="employee in service.list | orderBy:'fullName':false">{{employee.firstName}} {{employee.lastName}}</option>
+</select>
+

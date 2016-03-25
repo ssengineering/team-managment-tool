@@ -1,0 +1,27 @@
+#employeeListWrapperDiv {
+	height: 500px;
+}
+
+.groupDiv {
+	padding: 2px;
+	margin-bottom: 4px;
+	border-radius: 4px;
+}
+
+.groupDiv h3 {
+	margin: 0px;
+}
+
+.groupDiv ul {
+	list-style-type: none;
+}
+
+.groupDiv li {
+	font-size: 1.2em;
+	margin-top: 2px;
+}
+
+.groupDiv li li {
+	font-size: 1.1em;
+	margin-top: 0px;
+}

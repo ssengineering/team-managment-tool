@@ -1,0 +1,107 @@
+/*
+*	Name: tradeRequest.css
+*	Application: Trade Request
+*
+*	Description: This is the main CSS file for the Trade Request
+*	app. Most of the styling of the app is contained in this
+*	file, except for the styling that is controlled by the
+*	jQuery library, the main CSS file for the OPS website, and
+*	a few instances of in-line styling.
+*/
+
+h1
+{
+    text-align:center;
+}
+
+
+body
+{
+	min-width: 929px;
+	overflow-x: hidden;
+}
+
+#main-header
+{
+	min-width:929px;
+}
+
+#header-top
+{
+	width: 929px;
+}
+
+#logo
+{
+	left: 10px;
+}
+
+#site-name
+{
+	left: 23px;
+}
+
+#search-container
+{
+	right: 10px;
+}
+
+#secondary-nav
+{
+	right: 10px;
+}
+
+#primary-nav ul
+{
+	padding: 0px 0px 0px 0px;
+}
+
+#content
+{
+	width: 910px;
+	padding: 0px 20px 20px 20px;
+}
+
+#footer-bottom
+{
+	padding: 35px 16px 16px 16px;
+}
+
+ .operationStatus
+{
+   position: fixed !important;
+   display: table-cell;
+   vertical-align: middle;
+   right: 10px;
+   bottom: 10px;
+   text-align: right;
+   padding: .5em;
+   height: auto;
+   width: auto;
+   background-color: #369;
+   z-index: 10;
+   border: .2em solid #011948;
+   color: lightsteelblue;
+   border-radius: .8em;
+}
+
+.operationStatus.success
+{
+       background-color: #76913C;
+       border: .2em solid #587B0E;
+       color: lightgrey;
+}
+
+.operationStatus.warning
+{
+   background-color: #EED50B;
+   border: .2em solid #E1A216;
+   color: #4d4d4d;
+}
+
+.operationStatus.failure
+{
+   background-color: #ED2604;
+   border: .2em solid #A11A03;
+   color: silver;
+}

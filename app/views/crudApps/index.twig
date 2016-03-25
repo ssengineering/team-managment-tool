@@ -1,0 +1,25 @@
+[% extends "templates/main.twig" %]
+[% block headerScripts %]
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<link rel="stylesheet" href="/static/css/crudApps/crudTable.css"></link>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="/includes/template/css/jquery-ui-1.9.0.custom.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-mocks.js"></script>
+[% endblock %]
+[% block content %]
+	<app ng-app="tmt_page">
+		<crud-table id="crud-table-dir"></crud-table>
+	[% block extra_dialogs %][% endblock %]
+	</app>
+	<script src="/static/tmt_page.js"></script>
+	<script src="/static/js/employeeSelect.js"></script>
+	<script src="/static/js/crudApps/itemService.js"></script>
+	<script src="/static/js/crudApps/errorService.js"></script>
+	<script src="/static/js/crudApps/preApiCallService.js"></script>
+	<script src="/static/js/[[app_name]]/config.js"></script>
+	<script src="/static/js/crudApps/crudTable.js"></script>
+	[% block extra_scripts %][% endblock %]
+[% endblock %]
+[% block footerScripts %]
+[% endblock %]

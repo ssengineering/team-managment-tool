@@ -1,0 +1,114 @@
+tr th:last-child {
+/*	border-top-right-radius : 10px;*/
+}
+
+tr th:first-child {
+/*	border-top-left-radius : 10px;*/
+}
+
+th {
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+td, th {
+	text-align : center;
+	vertical-align: middle;
+}
+
+th {
+	font-size : 14px;
+}
+
+.full-width{
+	width : 100%;
+}
+
+.row {
+	width: 90%;
+	min-height : 20px;
+	padding : 10px;
+}
+
+.col {
+	display: inline-block;
+}
+
+.pull-left {
+	float : left;
+}
+
+.pull-right {
+	float : right;
+}
+.center {
+	margin-left : auto;
+	margin-right : auto;
+}
+
+td input {
+	width : 95%;
+	margin: auto;
+	text-align : center;
+}
+
+.ng-dirty.ng-invalid, #crud-table .ng-invalid {
+	border-color : #a94442 ;
+}
+
+#search-field {
+	width : 60%;
+	min-width : 200px;
+}
+
+.text-center {
+	text-align : center!important;
+}
+
+.ui-icon {
+	display : inline-block!important;
+}
+
+.page-button {
+	width : 40px;
+	height : 20px;
+	padding : 3px;
+	vertical-align : middle;
+	margin:0!important;
+	border-spacing:0;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+table div, table span, tr, td {
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.alert {
+	padding : 10px;
+	border : outset;
+	border-color: red;
+	border-radius: 10px;
+	margin-top : 5px;
+	margin-bottom : 5px;
+	color : red;
+	background-color : #FCC;
+}
+
+input[type="submit"]{
+	width : 250px;
+}
+

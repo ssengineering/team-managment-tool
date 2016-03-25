@@ -1,0 +1,96 @@
+tmt:
+  extends:
+    file: common.yml
+    service: tmt
+  environment:
+    ENVIRONMENT: DEV
+    REDIS_HOST: redis
+    MONGO_HOST: mongodb
+    MONGO_DB_NAME: tmt
+    GUID_URL: guid:8000
+    RESOURCES_URL: resources:9000
+    PERMISSIONS_URL: permissions:5000
+    PRIVATE_KEY_FILE: /opt/keys/tmt.pem
+    KEYS_DIRECTORY: /opt/keys
+  links: 
+    - db
+    - redis
+    - mongodb
+    - guid
+    - resources
+    - permissions
+  volumes:
+    - app/:/var/www/html
+    - vendor/:/var/www/vendor
+    - dev/certs/insecure.key:/etc/ssl/private/ssl-cert-snakeoil.key
+    - dev/certs/insecure.pem:/etc/ssl/certs/ssl-cert-snakeoil.pem
+    - keys/:/opt/keys
+  ports:
+    - "80:80"
+    - "443:443"
+  env_file: ./env/tmt
+
+db:
+  extends:
+    file: common.yml
+    service: db
+    
+redis:
+  extends:
+    file: common.yml
+    service: redis
+    
+phpmyadmin:
+  image: maxexcloo/phpmyadmin
+  links:
+    - db:mariadb
+  environment:
+    VIRTUAL_HOST: localhost
+  ports:
+    - 8080:80
+    
+mongodb:
+  extends:
+    file: common.yml
+    service: mongodb
+  volumes:
+    - dev/mongo:/data/db
+
+guid:
+  image: ss-docker.byu.edu:5000/guid
+  ports:
+    - "8000:8000"
+
+resources:
+  image: ss-docker.byu.edu:5000/resources
+  environment:
+    DB_USER: root
+    DB_PASS: devteam
+    DB_HOST: db
+    DB_NAME: tmt_resources
+    DB_PORT: 3306
+    PRIVATE_KEY_FILE: /opt/keys/resources.pem
+    KEYS_DIRECTORY: /opt/keys
+  links:
+    - db
+  volumes:
+    - keys/:/opt/keys
+  ports:
+    - "9000:9000"
+
+permissions:
+  image: ss-docker.byu.edu:5000/permissions
+  environment:
+    DB_USER: root
+    DB_PASS: devteam
+    DB_HOST: db
+    DB_NAME: tmt_permissions
+    DB_PORT: 3306
+    PRIVATE_KEY_FILE: /opt/keys/permissions.pem
+    KEYS_DIRECTORY: /opt/keys
+  links:
+    - db
+  volumes:
+    - keys/:/opt/keys
+  ports:
+    - "5000:5000"

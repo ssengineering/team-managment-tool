@@ -1,0 +1,57 @@
+#title
+{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#searchParameters
+{
+	width: 80%;
+	text-align: center;
+	margin: auto;
+}
+
+#noteLog
+{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+#tableNotes
+{
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	text-align: center;
+	table-layout: fixed;
+	word-break: break-word;
+}
+
+th.smallHeader
+{
+	width: 9%;
+}
+
+.parameter
+{
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: .25em;
+	margin-bottom: .25em;
+	font-weight: bold;
+}
+.text
+{
+	width: 6em;
+}
+
+.clearMe
+{
+	clear: both;
+	width: 0px;
+	height: 0px;
+}

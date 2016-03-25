@@ -1,0 +1,36 @@
+tester:
+  build: dev/tester
+  environment:
+    ENVIRONMENT: TESTING 
+    DB_NAME: sites_ops_test
+    DB_HOST: db
+    DB_USER: root
+    DB_PASS: devteam
+    MONGO_HOST: mongodb
+    MONGO_DB_NAME: test
+    GUID_URL: ' '
+  command: /bin/bash unit-tests.sh 
+  links:
+    - db
+    - mongodb
+  volumes:
+    - .:/tmp
+
+db:
+  extends:
+    file: common.yml
+    service: db
+  environment:
+    MYSQL_ROOT_PASSWORD: devteam
+    MYSQL_DATABASE: sites_ops_test
+    MYSQL_USER: dev_connector
+    MYSQL_PASSWORD: dev
+  volumes: 
+    - /tmp/tmt-mysql:/var/lib/mysql
+
+mongodb:
+  extends:
+    file: common.yml
+    service: mongodb
+  volumes:
+    - /tmp/tmt-mongo:/data/db

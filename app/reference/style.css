@@ -1,0 +1,24 @@
+#messageStyle
+{
+    color: #405679;
+    font-family: "Times New Roman",Times,serif;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 100%;
+    padding-left:12px;
+}
+#submitInfo
+{
+	float: right;
+	top:2em;
+	position:relative;
+	padding-right:12px;	
+}
+#textAreaStyle
+{
+	padding-left:12px;	
+}
+#acdEditForm
+{
+	display:none;
+}

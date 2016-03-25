@@ -1,0 +1,335 @@
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 201 ( 31%)
+............................................................... 126 / 201 ( 62%)
+............................................................... 189 / 201 ( 94%)
+............
+
+Time: 29.2 seconds, Memory: 24.75Mb
+
+OK (201 tests, 671 assertions)
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 201 ( 31%)
+............................................................... 126 / 201 ( 62%)
+............................................................... 189 / 201 ( 94%)
+............
+
+Time: 29.73 seconds, Memory: 24.75Mb
+
+OK (201 tests, 671 assertions)
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 190 ( 33%)
+............................................E.................. 126 / 190 ( 66%)
+............................................................... 189 / 190 ( 99%)
+.
+
+Time: 32.97 seconds, Memory: 24.25Mb
+
+There was 1 error:
+
+1) TMT\api\position\EmployeeTerminationTest::testPost
+Undefined property: stdClass::$guid
+
+/tmp/app/models/Employee.php:140
+/tmp/test/unit/controllers/EmployeeTerminationTest.php:84
+
+FAILURES!
+Tests: 190, Assertions: 655, Errors: 1.
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 190 ( 33%)
+............................................E.................. 126 / 190 ( 66%)
+............................................................... 189 / 190 ( 99%)
+.
+
+Time: 28.64 seconds, Memory: 24.50Mb
+
+There was 1 error:
+
+1) TMT\api\position\EmployeeTerminationTest::testPost
+InvalidArgumentException: 
+
+/tmp/test/unit/controllers/EmployeeTerminationTest.php:110
+
+FAILURES!
+Tests: 190, Assertions: 655, Errors: 1.
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 190 ( 33%)
+............................................
+Fatal error: Cannot use object of type stdClass as array in /tmp/app/apis/employee/terminate.php on line 69
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 190 ( 33%)
+............................................F.................. 126 / 190 ( 66%)
+............................................................... 189 / 190 ( 99%)
+.
+
+Time: 27.2 seconds, Memory: 24.50Mb
+
+There was 1 failure:
+
+1) TMT\api\position\EmployeeTerminationTest::testPost
+Expectation failed for method name is equal to <string:getController> when invoked 1 time(s).
+Method was expected to be called 1 times, actually called 0 times.
+
+FAILURES!
+Tests: 190, Assertions: 656, Failures: 1.
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 190 ( 33%)
+............................................F.................. 126 / 190 ( 66%)
+............................................................... 189 / 190 ( 99%)
+.
+
+Time: 28.53 seconds, Memory: 24.50Mb
+
+There was 1 failure:
+
+1) TMT\api\position\EmployeeTerminationTest::testPost
+Expectation failed for method name is equal to <string:revokeAll> when invoked 1 time(s).
+Method was expected to be called 1 times, actually called 0 times.
+
+FAILURES!
+Tests: 190, Assertions: 660, Failures: 1.
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 190 ( 33%)
+............................................F.................. 126 / 190 ( 66%)
+............................................................... 189 / 190 ( 99%)
+.
+
+Time: 28.73 seconds, Memory: 24.50Mb
+
+There was 1 failure:
+
+1) TMT\api\position\EmployeeTerminationTest::testPost
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+-'{"status":"OK","data":{"permissions":true,"notifications":true,"rights":true,"terminated":true}}'
++'{"status":"OK","data":{"permissions":true,"notifications":true,"rights":{"sent":[],"failed":[],"manual":[]},"terminated":true}}'
+
+FAILURES!
+Tests: 190, Assertions: 660, Failures: 1.
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 190 ( 33%)
+............................................................... 126 / 190 ( 66%)
+............................................................... 189 / 190 ( 99%)
+.
+
+Time: 25.7 seconds, Memory: 24.50Mb
+
+OK (190 tests, 660 assertions)
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 190 ( 33%)
+............................................F.................. 126 / 190 ( 66%)
+............................................................... 189 / 190 ( 99%)
+.
+
+Time: 34.89 seconds, Memory: 24.50Mb
+
+There was 1 failure:
+
+1) TMT\api\position\EmployeeTerminationTest::testPost
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+-'{"status":"OK","data":{"permissions":true,"notifications":true,"rights":{"sent":[],"failed":[],"manual":[]},"terminated":true}}'
++'in revoke rightsobject(TMT\controller\RightHandler)#722 (4) {
++  ["rightAcc":"TMT\controller\RightHandler":private]=>
++  object(TMT\accessor\Right)#723 (2) {
++    ["pdo":protected]=>
++    object(PDO)#725 (0) {
++    }
++    ["guidCreator":"TMT\accessor\Accessor":private]=>
++    object(TMT\accessor\GuidCreator)#724 (0) {
++    }
++  }
++  ["rightStatusAcc":"TMT\controller\RightHandler":private]=>
++  object(TMT\accessor\RightStatus)#726 (2) {
++    ["pdo":protected]=>
++    object(PDO)#728 (0) {
++    }
++    ["guidCreator":"TMT\accessor\Accessor":private]=>
++    object(TMT\accessor\GuidCreator)#727 (0) {
++    }
++  }
++  ["rightEmailAcc":"TMT\controller\RightHandler":private]=>
++  object(TMT\accessor\RightEmail)#729 (2) {
++    ["pdo":protected]=>
++    object(PDO)#731 (0) {
++    }
++    ["guidCreator":"TMT\accessor\Accessor":private]=>
++    object(TMT\accessor\GuidCreator)#730 (0) {
++    }
++  }
++  ["employeeAcc":"TMT\controller\RightHandler":private]=>
++  object(TMT\accessor\Employee)#732 (2) {
++    ["pdo":protected]=>
++    object(PDO)#734 (0) {
++    }
++    ["guidCreator":"TMT\accessor\Accessor":private]=>
++    object(TMT\accessor\GuidCreator)#733 (0) {
++    }
++  }
++}
++{"status":"OK","data":{"permissions":true,"notifications":true,"rights":{"sent":[],"failed":[],"manual":[]},"terminated":true}}'
+
+FAILURES!
+Tests: 190, Assertions: 660, Failures: 1.
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 190 ( 33%)
+............................................F.................. 126 / 190 ( 66%)
+............................................................... 189 / 190 ( 99%)
+.
+
+Time: 27.82 seconds, Memory: 24.50Mb
+
+There was 1 failure:
+
+1) TMT\api\position\EmployeeTerminationTest::testPost
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+-'{"status":"OK","data":{"permissions":true,"notifications":true,"rights":{"sent":[],"failed":[],"manual":[]},"terminated":true}}'
++'{"status":"OK","data":{"permissions":true,"notifications":true,"rights":true,"terminated":true}}'
+
+FAILURES!
+Tests: 190, Assertions: 660, Failures: 1.
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 190 ( 33%)
+............................................................... 126 / 190 ( 66%)
+............................................................... 189 / 190 ( 99%)
+.
+
+Time: 29.92 seconds, Memory: 24.50Mb
+
+OK (190 tests, 661 assertions)
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 200 ( 31%)
+...........E................................................... 126 / 200 ( 63%)
+............................................................... 189 / 200 ( 94%)
+...........
+
+Time: 44.56 seconds, Memory: 25.00Mb
+
+There was 1 error:
+
+1) TMT\accessor\QuicklinksTest::testUpdate
+Exception: Data given for the query does not match the expected data. Expected Array
+(
+    [:guid] => guid1
+)
+ but got Array
+(
+    [:guid] => testguid
+)
+
+
+/tmp/app/libs/MockDB.php:50
+/tmp/app/accessors/Quicklinks.php:18
+/tmp/app/accessors/Quicklinks.php:78
+/tmp/test/unit/accessors/QuicklinksTest.php:97
+
+FAILURES!
+Tests: 200, Assertions: 674, Errors: 1.
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 200 ( 31%)
+................E.............................................. 126 / 200 ( 63%)
+............................................................... 189 / 200 ( 94%)
+...........
+
+Time: 37.01 seconds, Memory: 25.00Mb
+
+There was 1 error:
+
+1) TMT\accessor\TrainingTeamLeadsTest::testadd
+Missing argument 2 for TMT\accessor\TrainingTeamLeads::get(), called in /tmp/app/accessors/TrainingTeamLeads.php on line 76 and defined
+
+/tmp/app/accessors/TrainingTeamLeads.php:15
+/tmp/app/accessors/TrainingTeamLeads.php:76
+/tmp/test/unit/accessors/TrainingTeamLeadsTest.php:94
+
+FAILURES!
+Tests: 200, Assertions: 674, Errors: 1.
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 200 ( 31%)
+............................................................... 126 / 200 ( 63%)
+............................................................... 189 / 200 ( 94%)
+...........
+
+Time: 25.32 seconds, Memory: 25.00Mb
+
+OK (200 tests, 675 assertions)
+PHPUnit 4.8.9 by Sebastian Bergmann and contributors.
+
+...............................................................  63 / 214 ( 29%)
+...................................................EEEE........ 126 / 214 ( 58%)
+.......................................................E....... 189 / 214 ( 88%)
+.......EE................
+
+Time: 29.16 seconds, Memory: 26.00Mb
+
+There were 7 errors:
+
+1) TMT\controller\EmailHandlerTest::testConstruct
+Undefined property: TMT\model\Email::$recipients
+
+/tmp/app/controllers/EmailHandler.php:44
+/tmp/app/controllers/EmailHandler.php:32
+/tmp/test/unit/controllers/EmailHandlerTest.php:22
+
+2) TMT\controller\EmailHandlerTest::testConstructWithArrays
+Undefined property: TMT\model\Email::$recipients
+
+/tmp/app/controllers/EmailHandler.php:44
+/tmp/app/controllers/EmailHandler.php:32
+/tmp/test/unit/controllers/EmailHandlerTest.php:40
+
+3) TMT\controller\EmailHandlerTest::testBadRecipients
+Undefined property: TMT\model\Email::$recipients
+
+/tmp/app/controllers/EmailHandler.php:44
+/tmp/app/controllers/EmailHandler.php:32
+/tmp/test/unit/controllers/EmailHandlerTest.php:61
+
+4) TMT\controller\EmailHandlerTest::testBadCC
+Undefined property: TMT\model\Email::$recipients
+
+/tmp/app/controllers/EmailHandler.php:44
+/tmp/app/controllers/EmailHandler.php:32
+/tmp/test/unit/controllers/EmailHandlerTest.php:77
+
+5) ControllerTest::testGetControllerWithParams
+Undefined property: TMT\model\Email::$recipients
+
+/tmp/app/controllers/EmailHandler.php:44
+/tmp/app/controllers/EmailHandler.php:32
+/tmp/app/libs/Controller.php:70
+/tmp/test/unit/libs/ControllerTest.php:58
+
+6) TMT\model\EmailTest::testEmptyConstruct
+Undefined property: TMT\model\Email::$subject
+
+/tmp/test/unit/models/EmailTest.php:25
+
+7) TMT\model\EmailTest::testConstruct
+Undefined property: TMT\model\Email::$subject
+
+/tmp/test/unit/models/EmailTest.php:44
+
+FAILURES!
+Tests: 214, Assertions: 677, Errors: 7.

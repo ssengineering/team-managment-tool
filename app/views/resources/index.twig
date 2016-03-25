@@ -1,0 +1,149 @@
+[% extends "templates/main.twig" %]
+
+[% block headerScripts %]
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap/namespaced-bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/bootstrap/namespaced-bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="/static/css/resources/index.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="/static/tmt_page.js"></script>
+<script src="/static/js/resources/index.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap/bootstrap.min.js"></script>
+[% endblock %]
+
+[% block content %]
+<h1 id="header">Resources</h1>
+<div ng-app="tmt_page" ng-controller="resourceCtrl" class="bootstrap">
+	<div class="col-xs-12">
+		<button type="button" class="btn pull-right" style="margin-bottom:10px" ng-click="add()" ng-class="{'btn-success': !adding, 'btn-warning': adding}">{{addText}}</button>
+	</div>
+
+	<!-- Add resource -->
+	<div class="col-xs-8 col-xs-offset-2" ng-show="adding" id="addDiv">
+		<h4 style="text-align:center;margin:2px">New Resource</h4>
+		<label for="nameInput">Name</label>
+		<input name="nameInput" type="text" class="form-control" placeholder="Name..." ng-model="name">
+		<label for="descriptionInput">Description</label>
+		<input name="descriptionInput" type="text" class="form-control" placeholder="Description..." ng-model="description">
+		<label for="apiInput">API Endpoint</label>
+		<input name="apiInput" type="text" class="form-control" placeholder="Example '/resources'" ng-model="api">
+		<div class="text-center" style="margin-top:10px;margin-bottom:5px">
+			<button class="btn btn-success" type="button" ng-click="addResource()" ng-disabled="name.length < 1 || description.length < 1 || api.length < 1">Submit</button>
+		</div>
+	</div>
+
+	<!-- Resources -->
+	<div class="noPadding col-xs-12" ng-repeat="resource in resources | orderBy:'name'">
+		<div class="panel panel-info">
+			<!-- Panel Heading -->
+			<div class="panel-heading col-xs-12" ng-show="!edit">
+				<div class="col-xs-2">
+					<div class="resourceHeader">{{resource.name}}</div>
+					<div>{{resource.apiEndpoint}}</div>
+				</div>
+				<div class="col-xs-8">
+					<div class="row">{{resource.guid}}</div>
+					<div class="row">{{resource.description}}</div>
+				</div>
+				<div class="col-xs-2" style="padding-right:0px">
+					<div class="pull-right">
+						<button type="button" class="btn btn-info btn-sm" ng-click="edit = !edit; oldDesc=resource.description; oldAPI=resource.apiEndpoint; oldName=resource.name">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</button>
+						<button type="button" class="btn btn-danger btn-sm" ng-click="deleteResource(resource.guid)"><span class="glyphicon glyphicon-trash"></span></button>
+					</div>
+				</div>
+			</div>
+			<!-- Panel Heading in edit mode -->
+			<div class="panel-heading col-xs-12" ng-show="edit">
+				<div class="col-xs-10">
+					<div class="input-group">
+						<span class="input-group-addon">Name</span>
+						<input type="text" class="form-control" ng-model="resource.name">
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon">Description</span>
+						<input type="text" class="form-control" ng-model="resource.description">
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon">API Endpoint</span>
+						<input type="text" class="form-control" ng-model="resource.apiEndpoint">
+					</div>
+				</div>
+				<div class="col-xs-2" style="padding-right:0px">
+					<div class="pull-right" style="padding-right:0px">
+						<button type="button" class="btn btn-success btn-sm" ng-click="edit = !edit; updateResource(resource)" ng-disabled="resource.description.length < 1 || resource.apiEndpoint.length < 1">
+							<span class="glyphicon glyphicon-ok"></span>
+						</button>
+						<button type="button" class="btn btn-warning btn-sm" ng-click="edit = !edit; resource.description=oldDesc; resource.apiEndpoint=oldAPI; resource.name=oldName">
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- Panel Body -->
+			<div class="panel-body panelContent">
+				<div class="col-xs-12">
+					<!-- Verb List For Resources -->
+					<span ng-repeat="verb in resource.verbs" class="col-xs-3">
+						<div class="row" style="margin-top:10px;height:60px">
+							<div class="btn-group col-xs-12 noPadding" role="group">
+								<button type="button" class="btn btn-primary verb col-xs-8" data-toggle="popover" data-trigger="focus" title="Description" data-content="{{verb.description}}" popover>{{verb.verb}}</button>
+								<button type="button" class="btn btn-primary col-xs-2" ng-disabled="editDescription" ng-click="editDescription = true; oldVerbDesc = verb.description">
+									<span class="glyphicon glyphicon-pencil"></span>
+								</button>
+								<button type="button" class="btn btn-primary col-xs-2" ng-click="deleteVerb(verb)">
+									<span class="glyphicon glyphicon-trash"></span>
+								</button>
+							</div>
+							<!-- Div that allows description editing for verbs -->
+							<div ng-show="editDescription" class="input-group input-group-sm">
+								<input type="text" class="form-control" ng-model="verb.description" placeholder="Description...">
+								<span class="input-group-btn">
+									<button type="button" class="btn btn-success" style="padding-right:5px;padding-left:5px" ng-click="editDescription=false; updateVerb(verb)"><span class="glyphicon glyphicon-ok"></span></button>
+								</span>
+								<span class="input-group-btn" ng-click="verb.description = oldVerbDesc; editDescription = false">
+									<button type="button" class="btn btn-warning" style="padding-right:5px;padding-left:5px"><span class="glyphicon glyphicon-remove"></span></button>
+								</span>
+							</div>
+						</div>
+					</span>
+				</div>
+
+				<!-- Button for adding a new verb -->
+				<button type="button" class="btn btn-success" style="margin-top:10px" ng-click="addVerb = !addVerb" ng-show="!addVerb">
+					<span class="glyphicon glyphicon-plus"></span>
+				</button>
+				<!-- Div for adding verb -->
+				<div style="margin-top:10px" class="col-xs-12" ng-show="addVerb">
+					<h4>Add verb to <i>{{resource.name}}</i></h4>
+					<!-- Input for new verb name -->
+					<div class="col-xs-6">
+						<div class="input-group">
+							<span class="input-group-addon">Verb:</span>
+							<input type="text" class="form-control" placeholder="Example: 'edit'" ng-model='resource.verbName'>
+						</div>
+					</div>
+					<!-- Input for new verb description -->
+					<div class="col-xs-6" class="noPadding">
+						<div class="input-group">
+							<span class="input-group-addon">Description:</span>
+							<input type="text" class="form-control" placeholder="Description..." ng-model="resource.verbDescription">
+						</div>
+					</div>
+					<!-- Add and cancel buttons -->
+					<div class="col-xs-12" style="margin-top:10px">
+						<div class="text-center">
+							<button type="button" class="btn btn-success"
+							  ng-click="insertVerb(resource.verbName, resource.verbDescription, resource.guid); resource.verbDescription=''; resource.verbName=''"
+							  ng-disabled="resource.verbName.length < 1 || resource.verbName === undefined || resource.verbDescription.length < 1 || resource.verbDescription === undefined">
+								Add
+							</button>
+							<button type="button" class="btn btn-danger" ng-click="addVerb = !addVerb;resource.verbName='';resource.verbDescription=''">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+[% endblock %]

@@ -1,0 +1,8 @@
+Let it be known that the version of raphael.js that we are using is a customized version that I wrote
+ (I being Mika Sanchez).
+ 
+ There are a few things that have been added. The source code for the project including the 
+ explanation of what the functions do can be found in the raphael.core.js.
+ 
+ We are also using the new version of the eve.js library (v0.4.1). Looking at the source code you 
+ should be able to figure out any questions you might have about how things work.

@@ -1,0 +1,6 @@
+What the MySQL routine needs to do for the routine task list
+
+1. select * from routineTasks where the current day of the week field is 1 or the date matches the current date
+2. select * from routineTaskLog where either dateMuted or dateCompleted match the current date
+3. join the results from the first 2 queries on the taskID field from routineTaskLog to the ID in routineTasks
+4. return the newly created table ordered by timeDue ASC
